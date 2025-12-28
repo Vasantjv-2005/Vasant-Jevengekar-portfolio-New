@@ -130,7 +130,7 @@ export default function Portfolio() {
               <div className="mt-8 space-y-6">
                 <Card>
                   <CardHeader>
-                    <div className="flex items-center justify-between gap-4">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
                       <div className="flex items-center gap-3">
                         <Image
                           src="/images/course.png"
@@ -144,7 +144,7 @@ export default function Portfolio() {
                           <CardDescription className="text-base">Course Central — Summer 2025</CardDescription>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="mt-2 md:mt-0 flex flex-wrap items-center gap-2">
                         <Badge variant="outline">Internship</Badge>
                         <Badge className="bg-green-500 text-white animate-pulse">Completed</Badge>
                       </div>
@@ -171,7 +171,7 @@ export default function Portfolio() {
                 </Card>
                 <Card>
                   <CardHeader>
-                    <div className="flex items-center justify-between gap-4">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
                       <div className="flex items-center gap-3">
                         <Image
                           src="/images/elevate.png"
@@ -185,7 +185,7 @@ export default function Portfolio() {
                           <CardDescription className="text-base">Elevate Labs — Jun 2025 – Jul 2025</CardDescription>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="mt-2 md:mt-0 flex flex-wrap items-center gap-2">
                         <Badge variant="outline">Internship</Badge>
                         <Badge className="bg-green-500 text-white animate-pulse">Completed</Badge>
                       </div>
