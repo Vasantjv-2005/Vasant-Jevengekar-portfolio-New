@@ -42,7 +42,7 @@ export default function Portfolio() {
 
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl text-balance leading-relaxed">
             I build reliable and scalable web applications using <span className="font-semibold text-foreground">React.js</span>,
-            <span className="font-semibold text-foreground"> Next.js</span>, <span className="font-semibold text-foreground">Supabase</span>, and
+            <span className="font-semibold text-foreground"> Next.js</span>, <span className="font-semibold text-foreground">Supabase</span>, <span className="font-semibold text-foreground">MongoDB</span>, and
             <span className="font-semibold text-foreground"> TypeScript</span>.
           </p>
 
@@ -126,6 +126,7 @@ export default function Portfolio() {
                 <Badge variant="secondary">Codveda Technologies</Badge>
                 <Badge variant="secondary">InternCourse</Badge>
                 <Badge variant="secondary">CodeAlpha</Badge>
+                <Badge variant="secondary">Acmegrade</Badge>
               </div>
               <div className="mt-8 space-y-6">
                 <Card>
@@ -208,6 +209,50 @@ export default function Portfolio() {
                     <div className="mt-4">
                       <Link
                         href="https://elevate-labs-project.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-primary hover:underline"
+                      >
+                        Project Link
+                        <ExternalLink className="size-4" />
+                      </Link>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader>
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                      <div className="flex items-center gap-3">
+                        <Image
+                          src="/images/acemgrade.png"
+                          alt="Acmegrade logo"
+                          width={40}
+                          height={40}
+                          className="rounded-md"
+                        />
+                        <div>
+                          <CardTitle>Acmegrade</CardTitle>
+                        </div>
+                      </div>
+                      <div className="mt-2 md:mt-0 flex flex-wrap items-center gap-2">
+                        <Badge variant="outline">Training+Internship</Badge>
+                        <Badge className="bg-green-500 text-white animate-pulse">Completed</Badge>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
+                      <li>Learned and applied HTML, CSS, JavaScript, Node.js, and MySQL for full-stack web development.</li>
+                      <li>Designed and developed an Electronics E-commerce website as a hands-on project.</li>
+                      <li>Built responsive and user-friendly web pages for product listings and navigation.</li>
+                      <li>Implemented backend logic using Node.js to handle application functionality.</li>
+                      <li>Managed and stored application data using MySQL databases.</li>
+                      <li>Gained practical experience in integrating frontend and backend components.</li>
+                      <li>Improved problem-solving skills and understanding of real-world web application development.</li>
+                    </ul>
+                    <div className="mt-4">
+                      <Link
+                        href="https://aura-commerce-njuq.vercel.app/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-primary hover:underline"
