@@ -70,6 +70,10 @@ export default function Portfolio() {
               <Github className="size-5" />
               <span className="sr-only">GitHub</span>
             </Link>
+            <Link href="https://x.com/VasantJeve78956" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Image src="/images/x.png" alt="X" width={20} height={20} className="rounded-sm object-contain" />
+              <span className="sr-only">X</span>
+            </Link>
             <Link href="mailto:vasantjv2005@gmail.com" className="text-muted-foreground hover:text-foreground transition-colors">
               <Mail className="size-5" />
               <span className="sr-only">Email</span>
