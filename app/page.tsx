@@ -254,17 +254,6 @@ export default function Portfolio() {
                       <li>Gained practical experience in integrating frontend and backend components.</li>
                       <li>Improved problem-solving skills and understanding of real-world web application development.</li>
                     </ul>
-                    <div className="mt-4">
-                      <Link
-                        href="https://aura-commerce-njuq.vercel.app/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-primary hover:underline"
-                      >
-                        Project Link
-                        <ExternalLink className="size-4" />
-                      </Link>
-                    </div>
                   </CardContent>
                 </Card>
               </div>
