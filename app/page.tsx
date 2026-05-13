@@ -348,15 +348,110 @@ export default function Portfolio() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">Featured Projects</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <Card className="group hover:shadow-lg transition-all duration-300">
+            <Card className="group hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col rounded-lg">
+              <div className="relative w-full h-48 bg-muted overflow-hidden rounded-t-lg">
+                <Image
+                  src="/6.png"
+                  alt="Integrated Food Delivery system"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between">
+                  Integrated Food Delivery system
+                  <ExternalLink className="size-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                </CardTitle>
+                <CardDescription>Full-Stack Food Delivery Platform</CardDescription>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <p className="text-muted-foreground mb-4">
+                  An integrated food delivery system is a full-stack application that allows users to browse restaurants, explore menus, add items to a cart, place orders, make payments, and track deliveries in real time, all while seamlessly connecting frontend interfaces with backend services for data, authentication, and order management.
+                </p>
+                <Button asChild variant="outline" className="w-full bg-transparent">
+                  <a href="https://github.com/Vasantjv-2005/Integrated-Food-Delivery-and-Dine-out-Hospitality-platform.git" target="_blank" rel="noopener noreferrer">
+                    View on GitHub
+                    <ExternalLink className="ml-2 size-4" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col rounded-lg">
+              <div className="relative w-full h-48 bg-muted overflow-hidden rounded-t-lg">
+                <Image
+                  src="/1.png"
+                  alt="Bug Tracker project"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between">
+                  Bug Tracker Project
+                  <ExternalLink className="size-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                </CardTitle>
+                <CardDescription>Bug Tracking System</CardDescription>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <p className="text-muted-foreground mb-4">
+                  A powerful bug tracking system used to track, manage, and resolve bugs efficiently. Built with modern design principles and developer experience in mind, featuring real-time updates and analytics.
+                </p>
+                <Button asChild variant="outline" className="w-full bg-transparent">
+                  <a href="https://github.com/Vasantjv-2005/Bug-Tracker-project.git" target="_blank" rel="noopener noreferrer">
+                    GitHub
+                    <ExternalLink className="ml-2 size-4" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col rounded-lg">
+              <div className="relative w-full h-48 bg-muted overflow-hidden rounded-t-lg">
+                <Image
+                  src="/2.png"
+                  alt="Meter Flow"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between">
+                  Meter Flow
+                  <ExternalLink className="size-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                </CardTitle>
+                <CardDescription>API Key Management Platform</CardDescription>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <p className="text-muted-foreground mb-4">
+                  Generate, manage, and test API keys with production-ready analytics. Built with modern design principles and developer experience in mind.
+                </p>
+                <Button asChild variant="outline" className="w-full bg-transparent">
+                  <a href="https://github.com/Vasantjv-2005/METER-FLOW-API.git" target="_blank" rel="noopener noreferrer">
+                    View on GitHub
+                    <ExternalLink className="ml-2 size-4" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col rounded-lg">
+              <div className="relative w-full h-48 bg-muted overflow-hidden rounded-t-lg">
+                <Image
+                  src="/3.png"
+                  alt="Canvas Collab"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   Canvas Collab
                   <ExternalLink className="size-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 </CardTitle>
-                <CardDescription>Collaborative Drawing Application</CardDescription>
+                <CardDescription>Real-Time Collaborative Drawing</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-grow">
                 <p className="text-muted-foreground mb-4">
                   A real-time collaborative canvas application built with modern web technologies, enabling multiple
                   users to draw and create together seamlessly.
@@ -370,15 +465,23 @@ export default function Portfolio() {
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-lg transition-all duration-300">
+            <Card className="group hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col rounded-lg">
+              <div className="relative w-full h-48 bg-muted overflow-hidden rounded-t-lg">
+                <Image
+                  src="/4.png"
+                  alt="E-commerce Website"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   E-commerce Website
                   <ExternalLink className="size-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 </CardTitle>
-                <CardDescription>Full-Featured Online Store</CardDescription>
+                <CardDescription>Premium Electronics Store</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-grow">
                 <p className="text-muted-foreground mb-4">
                   A comprehensive e-commerce platform with product listings, shopping cart functionality, and responsive
                   design for optimal user experience.
