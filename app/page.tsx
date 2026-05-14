@@ -8,6 +8,8 @@ import {
   Send,
   Palette,
   Code2,
+  Database,
+  Server,
   GraduationCap,
   Briefcase,
   ExternalLink,
@@ -268,29 +270,92 @@ export default function Portfolio() {
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">Technical Skills</h2>
-          <div className="space-y-6">
-            {[
-              { name: "Frontend Development", percentage: 92 },
-              { name: "HTML & CSS", percentage: 95 },
-              { name: "JavaScript & TypeScript", percentage: 88 },
-              { name: "React & Next.js", percentage: 90 },
-              { name: "Responsive Design", percentage: 94 },
-              { name: "UI/UX Design", percentage: 87 },
-              { name: "Git and Github", percentage: 89 },
-            ].map((skill) => (
-              <div key={skill.name}>
-                <div className="flex justify-between mb-2">
-                  <span className="font-medium">{skill.name}</span>
-                  <span className="text-muted-foreground">{skill.percentage}%</span>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="bg-gradient-to-br from-secondary/50 to-background border-primary/10 hover:border-primary/30 transition-colors shadow-md">
+              <CardHeader>
+                <CardTitle className="text-2xl font-semibold flex items-center gap-3">
+                  <span className="p-2 bg-primary/10 rounded-lg">
+                    <Code2 className="size-6 text-primary" />
+                  </span>
+                  Frontend Technologies
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-4 items-center justify-start">
+                  {[
+                    { name: 'HTML', src: '/images/html.png' },
+                    { name: 'CSS', src: '/images/css.png' },
+                    { name: 'JavaScript', src: '/images/js.png' },
+                    { name: 'React', src: '/react.png' },
+                    { name: 'TypeScript', src: '/ty.png' }
+                  ].map((tech) => (
+                    <div key={tech.name} className="group flex flex-col items-center justify-center p-4 bg-background/50 backdrop-blur-sm rounded-xl border border-border/50 hover:border-primary/50 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 w-[90px] h-[90px]">
+                      <div className="relative w-8 h-8 mb-2 group-hover:scale-110 transition-transform duration-300">
+                        <Image src={tech.src} alt={tech.name} fill className="object-contain drop-shadow-sm" />
+                      </div>
+                      <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors text-center">{tech.name}</span>
+                    </div>
+                  ))}
                 </div>
-                <div className="h-3 bg-secondary rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-primary transition-all duration-1000 ease-out rounded-full"
-                    style={{ width: `${skill.percentage}%` }}
-                  />
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-br from-secondary/50 to-background border-primary/10 hover:border-primary/30 transition-colors shadow-md">
+              <CardHeader>
+                <CardTitle className="text-2xl font-semibold flex items-center gap-3">
+                  <span className="p-2 bg-primary/10 rounded-lg">
+                    <Database className="size-6 text-primary" />
+                  </span>
+                  Backend Technologies
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-4 items-center justify-start">
+                  {[
+                    { name: 'Next.js', src: '/next.png' },
+                    { name: 'Node.js', src: '/images/node.png' },
+                    { name: 'MongoDB', src: '/mongodb.png' },
+                    { name: 'Redis', src: '/images/redis.png' }
+                  ].map((tech) => (
+                    <div key={tech.name} className="group flex flex-col items-center justify-center p-4 bg-background/50 backdrop-blur-sm rounded-xl border border-border/50 hover:border-primary/50 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 w-[90px] h-[90px]">
+                      <div className="relative w-8 h-8 mb-2 group-hover:scale-110 transition-transform duration-300">
+                        <Image src={tech.src} alt={tech.name} fill className="object-contain drop-shadow-sm" />
+                      </div>
+                      <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors text-center">{tech.name}</span>
+                    </div>
+                  ))}
                 </div>
-              </div>
-            ))}
+              </CardContent>
+            </Card>
+
+            <Card className="md:col-span-2 bg-gradient-to-br from-secondary/50 to-background border-primary/10 hover:border-primary/30 transition-colors shadow-md">
+              <CardHeader>
+                <CardTitle className="text-2xl font-semibold flex items-center gap-3">
+                  <span className="p-2 bg-primary/10 rounded-lg">
+                    <Briefcase className="size-6 text-primary" />
+                  </span>
+                  Tools & Platforms
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-4 items-center justify-start">
+                  {[
+                    { name: 'GitHub', src: '/github.png' },
+                    { name: 'Vercel', src: '/images/vercel.png' },
+                    { name: 'Netlify', src: '/images/net.png' },
+                    { name: 'Postman', src: '/images/postman.png' }
+                  ].map((tech) => (
+                    <div key={tech.name} className="group flex flex-col items-center justify-center p-4 bg-background/50 backdrop-blur-sm rounded-xl border border-border/50 hover:border-primary/50 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 w-[90px] h-[90px]">
+                      <div className="relative w-8 h-8 mb-2 group-hover:scale-110 transition-transform duration-300">
+                        <Image src={tech.src} alt={tech.name} fill className={`object-contain drop-shadow-sm ${tech.name === 'GitHub' ? 'dark:invert' : ''}`} />
+                      </div>
+                      <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors text-center">{tech.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -368,6 +433,14 @@ export default function Portfolio() {
                 <p className="text-muted-foreground mb-4">
                   An integrated food delivery system is a full-stack application that allows users to browse restaurants, explore menus, add items to a cart, place orders, make payments, and track deliveries in real time, all while seamlessly connecting frontend interfaces with backend services for data, authentication, and order management.
                 </p>
+                <div className="flex flex-wrap items-center gap-3 mb-4 p-2 bg-secondary/30 rounded-lg">
+                  <Image src="/react.png" alt="React" width={24} height={24} className="object-contain" title="React" />
+                  <Image src="/tailwind.png" alt="Tailwind CSS" width={24} height={24} className="object-contain" title="Tailwind CSS" />
+                  <Image src="/ty.png" alt="TypeScript" width={24} height={24} className="object-contain" title="TypeScript" />
+                  <Image src="/next.png" alt="Next.js" width={24} height={24} className="object-contain" title="Next.js" />
+                  <Image src="/mongodb.png" alt="MongoDB" width={24} height={24} className="object-contain" title="MongoDB" />
+                  <Image src="/github.png" alt="GitHub" width={24} height={24} className="object-contain dark:invert" title="GitHub" />
+                </div>
                 <Button asChild variant="outline" className="w-full bg-transparent">
                   <a href="https://github.com/Vasantjv-2005/Integrated-Food-Delivery-and-Dine-out-Hospitality-platform.git" target="_blank" rel="noopener noreferrer">
                     View on GitHub
@@ -397,6 +470,14 @@ export default function Portfolio() {
                 <p className="text-muted-foreground mb-4">
                   A powerful bug tracking system used to track, manage, and resolve bugs efficiently. Built with modern design principles and developer experience in mind, featuring real-time updates and analytics.
                 </p>
+                <div className="flex flex-wrap items-center gap-3 mb-4 p-2 bg-secondary/30 rounded-lg">
+                  <Image src="/react.png" alt="React" width={24} height={24} className="object-contain" title="React" />
+                  <Image src="/tailwind.png" alt="Tailwind CSS" width={24} height={24} className="object-contain" title="Tailwind CSS" />
+                  <Image src="/ty.png" alt="TypeScript" width={24} height={24} className="object-contain" title="TypeScript" />
+                  <Image src="/next.png" alt="Next.js" width={24} height={24} className="object-contain" title="Next.js" />
+                  <Image src="/mongodb.png" alt="MongoDB" width={24} height={24} className="object-contain" title="MongoDB" />
+                  <Image src="/github.png" alt="GitHub" width={24} height={24} className="object-contain dark:invert" title="GitHub" />
+                </div>
                 <Button asChild variant="outline" className="w-full bg-transparent">
                   <a href="https://github.com/Vasantjv-2005/Bug-Tracker-project.git" target="_blank" rel="noopener noreferrer">
                     GitHub
@@ -426,6 +507,14 @@ export default function Portfolio() {
                 <p className="text-muted-foreground mb-4">
                   Generate, manage, and test API keys with production-ready analytics. Built with modern design principles and developer experience in mind.
                 </p>
+                <div className="flex flex-wrap items-center gap-3 mb-4 p-2 bg-secondary/30 rounded-lg">
+                  <Image src="/react.png" alt="React" width={24} height={24} className="object-contain" title="React" />
+                  <Image src="/tailwind.png" alt="Tailwind CSS" width={24} height={24} className="object-contain" title="Tailwind CSS" />
+                  <Image src="/ty.png" alt="TypeScript" width={24} height={24} className="object-contain" title="TypeScript" />
+                  <Image src="/next.png" alt="Next.js" width={24} height={24} className="object-contain" title="Next.js" />
+                  <Image src="/mongodb.png" alt="MongoDB" width={24} height={24} className="object-contain" title="MongoDB" />
+                  <Image src="/github.png" alt="GitHub" width={24} height={24} className="object-contain dark:invert" title="GitHub" />
+                </div>
                 <Button asChild variant="outline" className="w-full bg-transparent">
                   <a href="https://github.com/Vasantjv-2005/METER-FLOW-API.git" target="_blank" rel="noopener noreferrer">
                     View on GitHub
@@ -456,6 +545,12 @@ export default function Portfolio() {
                   A real-time collaborative canvas application built with modern web technologies, enabling multiple
                   users to draw and create together seamlessly.
                 </p>
+                <div className="flex flex-wrap items-center gap-3 mb-4 p-2 bg-secondary/30 rounded-lg">
+                  <Image src="/react.png" alt="React" width={24} height={24} className="object-contain" title="React" />
+                  <Image src="/ty.png" alt="TypeScript" width={24} height={24} className="object-contain" title="TypeScript" />
+                  <Image src="/next.png" alt="Next.js" width={24} height={24} className="object-contain" title="Next.js" />
+                  <Image src="/github.png" alt="GitHub" width={24} height={24} className="object-contain dark:invert" title="GitHub" />
+                </div>
                 <Button asChild variant="outline" className="w-full bg-transparent">
                   <a href="https://canvas-collab-five.vercel.app/" target="_blank" rel="noopener noreferrer">
                     View Project
@@ -486,6 +581,12 @@ export default function Portfolio() {
                   A comprehensive e-commerce platform with product listings, shopping cart functionality, and responsive
                   design for optimal user experience.
                 </p>
+                <div className="flex flex-wrap items-center gap-3 mb-4 p-2 bg-secondary/30 rounded-lg">
+                  <Image src="/react.png" alt="React" width={24} height={24} className="object-contain" title="React" />
+                  <Image src="/ty.png" alt="TypeScript" width={24} height={24} className="object-contain" title="TypeScript" />
+                  <Image src="/next.png" alt="Next.js" width={24} height={24} className="object-contain" title="Next.js" />
+                  <Image src="/github.png" alt="GitHub" width={24} height={24} className="object-contain dark:invert" title="GitHub" />
+                </div>
                 <Button asChild variant="outline" className="w-full bg-transparent">
                   <a href="https://endearing-pastelito-fec631.netlify.app/" target="_blank" rel="noopener noreferrer">
                     View Project
