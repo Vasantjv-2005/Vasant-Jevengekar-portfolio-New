@@ -9,7 +9,6 @@ import {
   Palette,
   Code2,
   Database,
-  Server,
   GraduationCap,
   Briefcase,
   ExternalLink,
