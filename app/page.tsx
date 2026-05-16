@@ -1,7 +1,5 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
+"use client"
+
 import { ThemeToggle } from "@/components/theme-toggle"
 import {
   FileText,
@@ -11,667 +9,548 @@ import {
   Database,
   GraduationCap,
   Briefcase,
-  ExternalLink,
-  Mail,
-  Github,
-  Linkedin,
+  Home,
+  User,
+  FolderDot,
+  ExternalLink
 } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
 import { Clock } from "@/components/clock"
+import { motion } from "framer-motion"
+import { CursorGlow } from "@/components/ui/cursor-glow"
+import { AnimatedBackground } from "@/components/ui/animated-background"
+import { FloatingDock } from "@/components/ui/floating-dock"
+import { MagicCard } from "@/components/ui/magic-card"
+import { HeroSection } from "@/components/hero-section"
+import { ProjectCard } from "@/components/project-card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+}
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+}
 
 export default function Portfolio() {
+  const dockItems = [
+    { icon: <Home className="size-5" />, label: "Home", href: "#" },
+    { icon: <User className="size-5" />, label: "About", href: "#about" },
+    { icon: <Briefcase className="size-5" />, label: "Experience", href: "#experience" },
+    { icon: <FolderDot className="size-5" />, label: "Projects", href: "#projects" },
+    { icon: <Send className="size-5" />, label: "Contact", href: "#contact" },
+  ]
+
   return (
-    <div className="min-h-screen grid-pattern">
-      <ThemeToggle />
+    <div className="min-h-screen relative overflow-hidden selection:bg-primary/30 selection:text-primary">
+      <CursorGlow />
+      <AnimatedBackground />
+      
+      <div className="fixed top-6 right-6 z-50">
+        <ThemeToggle />
+      </div>
 
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 py-20 md:py-32">
-        <div className="flex flex-col items-start text-left max-w-4xl mx-auto">
-          <Image
-            src="/images/vasant.jpg.jpeg"
-            alt="Vasant Jevengekar profile photo"
-            width={180}
-            height={180}
-            className="rounded-full mb-8 ring-4 ring-primary/30 shadow-xl self-start"
-            priority
-          />
+      <FloatingDock items={dockItems} />
 
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-balance">
-            Hi, I&apos;m <span className="text-foreground">Vasant Jevengekar</span>
-          </h1>
+      <HeroSection />
 
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl text-balance leading-relaxed">
-            I build reliable and scalable web applications using <span className="font-semibold text-foreground">React.js</span>,
-            <span className="font-semibold text-foreground"> Next.js</span>, <span className="font-semibold text-foreground">Supabase</span>, <span className="font-semibold text-foreground">MongoDB</span>, and
-            <span className="font-semibold text-foreground"> TypeScript</span>.
-          </p>
-
-          <div className="flex flex-wrap gap-3 justify-start mb-8">
-            <Button asChild size="lg">
-              <Link href="#contact">
-                <Send className="mr-2 size-4" />
-                Get in touch
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <a href="/images/resume.jpg" target="_blank" rel="noopener noreferrer">
-                <FileText className="mr-2 size-4" />
-                Resume / CV
-              </a>
-            </Button>
-          </div>
-
-          <div className="flex gap-4">
-            <Link href="https://www.linkedin.com/in/j-vasant-3226612b5/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-              <Linkedin className="size-5" />
-              <span className="sr-only">LinkedIn</span>
-            </Link>
-            <Link href="https://github.com/Vasantjv-2005" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-              <Github className="size-5" />
-              <span className="sr-only">GitHub</span>
-            </Link>
-            <Link href="https://x.com/VasantJeve78956" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-              <Image src="/images/x.png" alt="X" width={20} height={20} className="rounded-sm object-contain" />
-              <span className="sr-only">X</span>
-            </Link>
-            <Link href="mailto:vasantjv2005@gmail.com" className="text-muted-foreground hover:text-foreground transition-colors">
-              <Mail className="size-5" />
-              <span className="sr-only">Email</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <Separator className="container" />
-
-      {/* About Me Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">About Me</h2>
-          <div className="space-y-4 text-lg leading-relaxed text-muted-foreground">
-            <p>
-              I&apos;m a web developer and designer with a passion for creating elegant solutions to complex problems.
-              With expertise in React, Next.js, and modern web technologies, I build responsive and accessible web
-              applications that make a difference.
-            </p>
-            <p>
-              As an aspiring full-stack developer, I&apos;ve been actively building my skills through self-driven
-              projects, internships, and continuous learning. I have successfully completed internships at Course
-              Central, Alfido Tech, Codectechnologies, Codveda Technologies, InternCourse, and CodeAlpha, where I gained
-              practical exposure to real-world projects and collaborative workflows.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <Separator className="container" />
-
-      {/* Experience Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-6">
-            <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-1">Featured</div>
-            <div className="flex items-center gap-3">
-              <Briefcase className="size-8" />
-              <h2 className="text-3xl md:text-4xl font-bold">Experience</h2>
+      {/* About Me Section - Cinematic Split */}
+      <motion.section 
+        id="about"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeUpVariant}
+        className="container mx-auto px-4 py-32"
+      >
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="space-y-8 relative">
+            <div className="absolute -inset-4 bg-primary/10 blur-3xl rounded-full -z-10" />
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight">
+              Designing the <span className="gradient-text">Future</span> of the Web
+            </h2>
+            <div className="space-y-6 text-xl leading-relaxed text-muted-foreground">
+              <p>
+                I&apos;m a web developer and designer with a passion for creating elegant solutions to complex problems.
+                With expertise in React, Next.js, and modern web technologies, I build responsive and accessible web
+                applications that make a difference.
+              </p>
+              <p>
+                As an aspiring full-stack developer, I&apos;ve been actively building my skills through self-driven
+                projects, internships, and continuous learning.
+              </p>
             </div>
           </div>
-          <Card>
-            <CardContent className="pt-6">
-              <p className="text-lg leading-relaxed text-muted-foreground">
-                Through my internship experiences, I&apos;ve developed a strong foundation in modern Full stack and
-                honed my ability to create clean, responsive, and accessible web interfaces. I&apos;m passionate about
-                integrating AI to enhance user experiences through personalization and automation.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                <Badge variant="secondary">Course Central</Badge>
-                <Badge variant="secondary">Alfido Tech</Badge>
-                <Badge variant="secondary">Codectechnologies</Badge>
-                <Badge variant="secondary">Codveda Technologies</Badge>
-                <Badge variant="secondary">InternCourse</Badge>
-                <Badge variant="secondary">CodeAlpha</Badge>
-                <Badge variant="secondary">Acmegrade</Badge>
-              </div>
-              <div className="mt-8 space-y-6">
-                <Card>
-                  <CardHeader>
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
-                      <div className="flex items-center gap-3">
-                        <Image
-                          src="/images/course.png"
-                          alt="Course Central logo"
-                          width={40}
-                          height={40}
-                          className="rounded-md"
-                        />
-                        <div>
-                          <CardTitle>Front-End Development Trainee</CardTitle>
-                          <CardDescription className="text-base">Course Central — Summer 2025</CardDescription>
-                        </div>
-                      </div>
-                      <div className="mt-2 md:mt-0 flex flex-wrap items-center gap-2">
-                        <Badge variant="outline">Internship</Badge>
-                        <Badge className="bg-green-500 text-white animate-pulse">Completed</Badge>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                      <li>
-                        Completed Front-End Development training under the Summer Training / Internship Program 2025 in
-                        collaboration with TRYST, IIT Delhi.
-                      </li>
-                      <li>Developed responsive user interfaces using HTML, CSS, and JavaScript.</li>
-                      <li>Built interactive components and single-page UI features using React.js.</li>
-                      <li>
-                        Designed and implemented a Quiz App frontend, including question rendering, option selection,
-                        score logic, and basic state handling.
-                      </li>
-                      <li>
-                        Strengthened understanding of component-based architecture, DOM manipulation, and UI state
-                        management.
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader>
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
-                      <div className="flex items-center gap-3">
-                        <Image
-                          src="/images/elevate.png"
-                          alt="Elevate Labs logo"
-                          width={40}
-                          height={40}
-                          className="rounded-md"
-                        />
-                        <div>
-                          <CardTitle>Web Development Intern</CardTitle>
-                          <CardDescription className="text-base">Elevate Labs — Jun 2025 – Jul 2025</CardDescription>
-                        </div>
-                      </div>
-                      <div className="mt-2 md:mt-0 flex flex-wrap items-center gap-2">
-                        <Badge variant="outline">Internship</Badge>
-                        <Badge className="bg-green-500 text-white animate-pulse">Completed</Badge>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                      <li>
-                        Successfully completed a Web Development Internship under the Skill India / MSME–supported program.
-                      </li>
-                      <li>Completed 8 practical tasks focused on real-world web development workflows.</li>
-                      <li>
-                        Built 1 complete project: a Developer Portfolio Website, emphasizing responsive design and clean UI.
-                      </li>
-                      <li>Implemented frontend features using HTML, CSS, JavaScript, and React.js.</li>
-                      <li>
-                        Applied best practices in layout structuring, component-based development, and user experience.
-                      </li>
-                    </ul>
-                    <div className="mt-4">
-                      <Link
-                        href="https://elevate-labs-project.vercel.app/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-primary hover:underline"
-                      >
-                        Project Link
-                        <ExternalLink className="size-4" />
-                      </Link>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader>
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
-                      <div className="flex items-center gap-3">
-                        <Image
-                          src="/images/acemgrade.png"
-                          alt="Acmegrade logo"
-                          width={40}
-                          height={40}
-                          className="rounded-md"
-                        />
-                        <div>
-                          <CardTitle>Acmegrade</CardTitle>
-                        </div>
-                      </div>
-                      <div className="mt-2 md:mt-0 flex flex-wrap items-center gap-2">
-                        <Badge variant="outline">Training+Internship</Badge>
-                        <Badge className="bg-green-500 text-white animate-pulse">Completed</Badge>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                      <li>Learned and applied HTML, CSS, JavaScript, Node.js, and MySQL for full-stack web development.</li>
-                      <li>Designed and developed an Electronics E-commerce website as a hands-on project.</li>
-                      <li>Built responsive and user-friendly web pages for product listings and navigation.</li>
-                      <li>Implemented backend logic using Node.js to handle application functionality.</li>
-                      <li>Managed and stored application data using MySQL databases.</li>
-                      <li>Gained practical experience in integrating frontend and backend components.</li>
-                      <li>Improved problem-solving skills and understanding of real-world web application development.</li>
-                    </ul>
-                  </CardContent>
-                </Card>
-              </div>
-            </CardContent>
-          </Card>
+          <MagicCard className="p-8 glass-card border-black/5 dark:border-white/5 rounded-3xl" glareColor="rgba(6, 182, 212, 0.2)">
+            <h3 className="text-2xl font-bold mb-6 text-foreground">My Journey</h3>
+            <p className="text-muted-foreground leading-relaxed text-lg">
+              Every great developer has an origin story. Mine involves late nights, endless cups of coffee, and an insatiable curiosity for how things work on the web.
+            </p>
+          </MagicCard>
         </div>
-      </section>
+      </motion.section>
 
-      <Separator className="container" />
+      {/* Experience Section */}
+      <motion.section 
+        id="experience"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+        className="container mx-auto px-4 py-32"
+      >
+        <motion.div variants={fadeUpVariant} className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-black mb-4 flex items-center justify-center gap-4">
+            <Briefcase className="size-10 text-primary" />
+            <span className="gradient-text">Experience</span>
+          </h2>
+          <p className="text-xl text-muted-foreground">My professional journey and collaborations</p>
+        </motion.div>
 
-      {/* Technical Skills Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">Technical Skills</h2>
+        <div className="max-w-4xl mx-auto space-y-16">
+          {/* Course Central */}
+          <motion.div variants={fadeUpVariant} className="relative">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
+              <div>
+                <h3 className="text-2xl font-bold text-foreground">Front-End Development Trainee</h3>
+                <p className="text-lg text-primary font-medium mt-1">
+                  Course Central <span className="text-muted-foreground ml-2 text-sm font-normal">— Summer 2025</span>
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <Badge variant="outline" className="border-black/10 dark:border-white/10 text-foreground bg-black/5 dark:bg-white/5">Internship</Badge>
+                <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 border-0 hover:bg-green-500/20">Completed</Badge>
+              </div>
+            </div>
+            <ul className="space-y-4 text-muted-foreground leading-relaxed">
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Completed Front-End Development training under the Summer Training / Internship Program 2025 in collaboration with TRYST, IIT Delhi.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Developed responsive user interfaces using HTML, CSS, and JavaScript.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Built interactive components and single-page UI features using React.js.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Designed and implemented a Quiz App frontend, including question rendering, option selection, score logic, and basic state handling.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Strengthened understanding of component-based architecture, DOM manipulation, and UI state management.</span>
+              </li>
+            </ul>
+          </motion.div>
+
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/10 to-transparent" />
+
+          {/* Elevate Labs */}
+          <motion.div variants={fadeUpVariant} className="relative">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
+              <div>
+                <h3 className="text-2xl font-bold text-foreground">Web Development Intern</h3>
+                <p className="text-lg text-primary font-medium mt-1">
+                  Elevate Labs <span className="text-muted-foreground ml-2 text-sm font-normal">— Jun 2025 - Jul 2025</span>
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <Badge variant="outline" className="border-black/10 dark:border-white/10 text-foreground bg-black/5 dark:bg-white/5">Internship</Badge>
+                <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 border-0 hover:bg-green-500/20">Completed</Badge>
+              </div>
+            </div>
+            <ul className="space-y-4 text-muted-foreground leading-relaxed mb-6">
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Successfully completed a Web Development Internship under the Skill India / MSME-supported program.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Completed 8 practical tasks focused on real-world web development workflows.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Built 1 complete project: a Developer Portfolio Website, emphasizing responsive design and clean UI.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Implemented frontend features using HTML, CSS, JavaScript, and React.js.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Applied best practices in layout structuring, component-based development, and user experience.</span>
+              </li>
+            </ul>
+            <a 
+              href="https://elevate-labs-project.vercel.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+            >
+              Project Link <ExternalLink className="ml-1 size-4" />
+            </a>
+          </motion.div>
+
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/10 to-transparent" />
+
+          {/* Acmegrade */}
+          <motion.div variants={fadeUpVariant} className="relative">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
+              <div>
+                <h3 className="text-2xl font-bold text-foreground">Training + Internship</h3>
+                <p className="text-lg text-primary font-medium mt-1">
+                  Acmegrade
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <Badge variant="outline" className="border-black/10 dark:border-white/10 text-foreground bg-black/5 dark:bg-white/5">Training+Internship</Badge>
+                <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 border-0 hover:bg-green-500/20">Completed</Badge>
+              </div>
+            </div>
+            <ul className="space-y-4 text-muted-foreground leading-relaxed">
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Learned and applied HTML, CSS, JavaScript, Node.js, and MySQL for full-stack web development.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Designed and developed an Electronics E-commerce website as a hands-on project.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Built responsive and user-friendly web pages for product listings and navigation.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Implemented backend logic using Node.js to handle application functionality.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Managed and stored application data using MySQL databases.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Gained practical experience in integrating frontend and backend components.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-primary mt-1.5 opacity-50">•</span>
+                <span>Improved problem-solving skills and understanding of real-world web application development.</span>
+              </li>
+            </ul>
+          </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="bg-gradient-to-br from-secondary/50 to-background border-primary/10 hover:border-primary/30 transition-colors shadow-md">
-              <CardHeader>
-                <CardTitle className="text-2xl font-semibold flex items-center gap-3">
-                  <span className="p-2 bg-primary/10 rounded-lg">
-                    <Code2 className="size-6 text-primary" />
-                  </span>
-                  Frontend Technologies
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-4 items-center justify-start">
-                  {[
-                    { name: 'HTML', src: '/images/html.png' },
-                    { name: 'CSS', src: '/images/css.png' },
-                    { name: 'JavaScript', src: '/images/js.png' },
-                    { name: 'React', src: '/react.png' },
-                    { name: 'TypeScript', src: '/ty.png' }
-                  ].map((tech) => (
-                    <div key={tech.name} className="group flex flex-col items-center justify-center p-4 bg-background/50 backdrop-blur-sm rounded-xl border border-border/50 hover:border-primary/50 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 w-[90px] h-[90px]">
-                      <div className="relative w-8 h-8 mb-2 group-hover:scale-110 transition-transform duration-300">
-                        <Image src={tech.src} alt={tech.name} fill className="object-contain drop-shadow-sm" />
-                      </div>
-                      <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors text-center">{tech.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/10 to-transparent" />
 
-            <Card className="bg-gradient-to-br from-secondary/50 to-background border-primary/10 hover:border-primary/30 transition-colors shadow-md">
-              <CardHeader>
-                <CardTitle className="text-2xl font-semibold flex items-center gap-3">
-                  <span className="p-2 bg-primary/10 rounded-lg">
-                    <Database className="size-6 text-primary" />
-                  </span>
-                  Backend Technologies
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-4 items-center justify-start">
-                  {[
-                    { name: 'Next.js', src: '/next.png' },
-                    { name: 'Node.js', src: '/images/node.png' },
-                    { name: 'MongoDB', src: '/mongodb.png' },
-                    { name: 'Redis', src: '/images/redis.png' }
-                  ].map((tech) => (
-                    <div key={tech.name} className="group flex flex-col items-center justify-center p-4 bg-background/50 backdrop-blur-sm rounded-xl border border-border/50 hover:border-primary/50 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 w-[90px] h-[90px]">
-                      <div className="relative w-8 h-8 mb-2 group-hover:scale-110 transition-transform duration-300">
-                        <Image src={tech.src} alt={tech.name} fill className="object-contain drop-shadow-sm" />
-                      </div>
-                      <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors text-center">{tech.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="md:col-span-2 bg-gradient-to-br from-secondary/50 to-background border-primary/10 hover:border-primary/30 transition-colors shadow-md">
-              <CardHeader>
-                <CardTitle className="text-2xl font-semibold flex items-center gap-3">
-                  <span className="p-2 bg-primary/10 rounded-lg">
-                    <Briefcase className="size-6 text-primary" />
-                  </span>
-                  Tools & Platforms
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-4 items-center justify-start">
-                  {[
-                    { name: 'GitHub', src: '/github.png' },
-                    { name: 'Vercel', src: '/images/vercel.png' },
-                    { name: 'Netlify', src: '/images/net.png' },
-                    { name: 'Postman', src: '/images/postman.png' }
-                  ].map((tech) => (
-                    <div key={tech.name} className="group flex flex-col items-center justify-center p-4 bg-background/50 backdrop-blur-sm rounded-xl border border-border/50 hover:border-primary/50 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 w-[90px] h-[90px]">
-                      <div className="relative w-8 h-8 mb-2 group-hover:scale-110 transition-transform duration-300">
-                        <Image src={tech.src} alt={tech.name} fill className={`object-contain drop-shadow-sm ${tech.name === 'GitHub' ? 'dark:invert' : ''}`} />
-                      </div>
-                      <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors text-center">{tech.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          {/* Other Collaborations */}
+          <motion.div variants={fadeUpVariant} className="pt-8">
+            <h3 className="text-xl font-bold text-foreground mb-6">Other Collaborations</h3>
+            <div className="flex flex-wrap gap-3">
+              {['Alfido Tech', 'Codectechnologies', 'Codveda Technologies', 'InternCourse', 'CodeAlpha'].map((company, i) => (
+                <Badge key={i} variant="secondary" className="px-4 py-2 text-sm bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 text-foreground backdrop-blur-md">
+                  {company}
+                </Badge>
+              ))}
+            </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <Separator className="container" />
+      {/* Technical Skills - Bento Grid */}
+      <motion.section 
+        id="skills"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+        className="container mx-auto px-4 py-32"
+      >
+        <motion.div variants={fadeUpVariant} className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-black mb-4">Technical <span className="gradient-text">Arsenal</span></h2>
+          <p className="text-xl text-muted-foreground">The tools I use to build digital experiences</p>
+        </motion.div>
 
-      {/* Services Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">Services</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <Palette className="size-6 text-primary" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <motion.div variants={fadeUpVariant} className="md:col-span-1">
+            <MagicCard className="h-full glass-card p-8 rounded-3xl">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="p-3 bg-primary/20 rounded-2xl glow-border">
+                  <Code2 className="size-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold">Frontend</h3>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { name: 'React', src: '/react.png' },
+                  { name: 'Next.js', src: '/next.png' },
+                  { name: 'TypeScript', src: '/ty.png' },
+                  { name: 'Tailwind', src: '/tailwind.png' },
+                  { name: 'HTML', src: '/images/html.png' },
+                  { name: 'CSS', src: '/images/css.png' },
+                  { name: 'JavaScript', src: '/images/js.png' },
+                ].map((tech) => (
+                  <div key={tech.name} className="flex flex-col items-center p-4 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors">
+                    <Image src={tech.src} alt={tech.name} width={40} height={40} className="mb-3 object-contain drop-shadow-lg" />
+                    <span className="text-xs font-medium text-foreground/80">{tech.name}</span>
                   </div>
-                  <CardTitle>Web Designer</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base leading-relaxed">
-                  I&apos;m a passionate and creative web designer dedicated to crafting visually stunning and
-                  user-friendly websites. With a keen eye for design and a love for clean, functional interfaces, I
-                  transform ideas into engaging digital experiences.
-                </CardDescription>
-              </CardContent>
-            </Card>
+                ))}
+              </div>
+            </MagicCard>
+          </motion.div>
 
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <Code2 className="size-6 text-primary" />
+          <motion.div variants={fadeUpVariant} className="md:col-span-1">
+            <MagicCard className="h-full glass-card p-8 rounded-3xl">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="p-3 bg-black dark:bg-white rounded-2xl glow-border">
+                  <Database className="size-8 text-white dark:text-black" />
+                </div>
+                <h3 className="text-2xl font-bold">Backend</h3>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { name: 'Node.js', src: '/images/node.png' },
+                  { name: 'MongoDB', src: '/mongodb.png' },
+                  { name: 'Redis', src: '/images/redis.png' }
+                ].map((tech) => (
+                  <div key={tech.name} className="flex flex-col items-center p-4 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors">
+                    <Image src={tech.src} alt={tech.name} width={40} height={40} className="mb-3 object-contain drop-shadow-lg" />
+                    <span className="text-xs font-medium text-foreground/80">{tech.name}</span>
                   </div>
-                  <CardTitle>Web Developer</CardTitle>
+                ))}
+              </div>
+            </MagicCard>
+          </motion.div>
+
+          <motion.div variants={fadeUpVariant} className="md:col-span-1">
+            <MagicCard className="h-full glass-card p-8 rounded-3xl">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="p-3 bg-purple-500/20 rounded-2xl glow-border">
+                  <Briefcase className="size-8 text-purple-400" />
                 </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base leading-relaxed">
-                  I&apos;m a dedicated and innovative web developer with a passion for building fast, functional, and
-                  user-focused websites. I specialize in turning ideas into interactive digital experiences using modern
-                  web technologies.
-                </CardDescription>
-              </CardContent>
-            </Card>
-          </div>
+                <h3 className="text-2xl font-bold">Tools</h3>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { name: 'VS Code', src: '/images/vs.png' },
+                  { name: 'Antigravity', src: '/images/anti.png' },
+                  { name: 'GitHub', src: '/github.png', invert: true },
+                  { name: 'Vercel', src: '/images/vercel.png', invert: true },
+                  { name: 'Netlify', src: '/images/net.png' },
+                  { name: 'Postman', src: '/images/postman.png' }
+                ].map((tech) => (
+                  <div key={tech.name} className="flex flex-col items-center p-4 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors">
+                    <Image src={tech.src} alt={tech.name} width={40} height={40} className={`mb-3 object-contain drop-shadow-lg ${tech.invert ? 'dark:invert' : ''}`} />
+                    <span className="text-xs font-medium text-foreground/80">{tech.name}</span>
+                  </div>
+                ))}
+              </div>
+            </MagicCard>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <Separator className="container" />
+      {/* Projects Showcase */}
+      <motion.section 
+        id="projects"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+        className="container mx-auto px-4 py-32 relative"
+      >
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[500px] bg-primary/5 blur-[150px] -z-10 rounded-full pointer-events-none" />
+        
+        <motion.div variants={fadeUpVariant} className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-black mb-4">Featured <span className="gradient-text">Projects</span></h2>
+          <p className="text-xl text-muted-foreground">Cinematic showcases of my latest work</p>
+        </motion.div>
 
-      {/* Projects Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">Featured Projects</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card className="group hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col rounded-lg">
-              <div className="relative w-full h-48 bg-muted overflow-hidden rounded-t-lg">
-                <Image
-                  src="/6.png"
-                  alt="Integrated Food Delivery system"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                  Integrated Food Delivery system
-                  <ExternalLink className="size-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                </CardTitle>
-                <CardDescription>Full-Stack Food Delivery Platform</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <p className="text-muted-foreground mb-4">
-                  An integrated food delivery system is a full-stack application that allows users to browse restaurants, explore menus, add items to a cart, place orders, make payments, and track deliveries in real time, all while seamlessly connecting frontend interfaces with backend services for data, authentication, and order management.
-                </p>
-                <div className="flex flex-wrap items-center gap-3 mb-4 p-2 bg-secondary/30 rounded-lg">
-                  <Image src="/react.png" alt="React" width={24} height={24} className="object-contain" title="React" />
-                  <Image src="/tailwind.png" alt="Tailwind CSS" width={24} height={24} className="object-contain" title="Tailwind CSS" />
-                  <Image src="/ty.png" alt="TypeScript" width={24} height={24} className="object-contain" title="TypeScript" />
-                  <Image src="/next.png" alt="Next.js" width={24} height={24} className="object-contain" title="Next.js" />
-                  <Image src="/mongodb.png" alt="MongoDB" width={24} height={24} className="object-contain" title="MongoDB" />
-                  <Image src="/github.png" alt="GitHub" width={24} height={24} className="object-contain dark:invert" title="GitHub" />
-                </div>
-                <Button asChild variant="outline" className="w-full bg-transparent">
-                  <a href="https://github.com/Vasantjv-2005/Integrated-Food-Delivery-and-Dine-out-Hospitality-platform.git" target="_blank" rel="noopener noreferrer">
-                    View on GitHub
-                    <ExternalLink className="ml-2 size-4" />
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
+        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <motion.div variants={fadeUpVariant} className="h-full">
+            <ProjectCard
+              title="Integrated Food Delivery System"
+              description="Full-Stack Food Delivery Platform"
+              longDescription="An integrated food delivery system is a full-stack application that allows users to browse restaurants, explore menus, add items to a cart, place orders, make payments, and track deliveries in real time."
+              image="/6.png"
+              link="https://github.com/Vasantjv-2005/Integrated-Food-Delivery-and-Dine-out-Hospitality-platform.git"
+              technologies={[
+                { name: 'React', src: '/react.png' },
+                { name: 'Tailwind CSS', src: '/tailwind.png' },
+                { name: 'TypeScript', src: '/ty.png' },
+                { name: 'Next.js', src: '/next.png', invertDark: true },
+                { name: 'MongoDB', src: '/mongodb.png' }
+              ]}
+            />
+          </motion.div>
+          
+          <motion.div variants={fadeUpVariant} className="h-full">
+            <ProjectCard
+              title="Meter Flow"
+              description="API Key Management Platform"
+              longDescription="Generate, manage, and test API keys with production-ready analytics. Built with modern design principles and developer experience in mind."
+              image="/2.png"
+              link="https://github.com/Vasantjv-2005/METER-FLOW-API.git"
+              technologies={[
+                { name: 'React', src: '/react.png' },
+                { name: 'TypeScript', src: '/ty.png' },
+                { name: 'Tailwind CSS', src: '/tailwind.png' },
+                { name: 'Next.js', src: '/next.png', invertDark: true },
+                { name: 'MongoDB', src: '/mongodb.png' }
+              ]}
+            />
+          </motion.div>
 
-            <Card className="group hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col rounded-lg">
-              <div className="relative w-full h-48 bg-muted overflow-hidden rounded-t-lg">
-                <Image
-                  src="/1.png"
-                  alt="Bug Tracker project"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                  Bug Tracker Project
-                  <ExternalLink className="size-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                </CardTitle>
-                <CardDescription>Bug Tracking System</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <p className="text-muted-foreground mb-4">
-                  A powerful bug tracking system used to track, manage, and resolve bugs efficiently. Built with modern design principles and developer experience in mind, featuring real-time updates and analytics.
-                </p>
-                <div className="flex flex-wrap items-center gap-3 mb-4 p-2 bg-secondary/30 rounded-lg">
-                  <Image src="/react.png" alt="React" width={24} height={24} className="object-contain" title="React" />
-                  <Image src="/tailwind.png" alt="Tailwind CSS" width={24} height={24} className="object-contain" title="Tailwind CSS" />
-                  <Image src="/ty.png" alt="TypeScript" width={24} height={24} className="object-contain" title="TypeScript" />
-                  <Image src="/next.png" alt="Next.js" width={24} height={24} className="object-contain" title="Next.js" />
-                  <Image src="/mongodb.png" alt="MongoDB" width={24} height={24} className="object-contain" title="MongoDB" />
-                  <Image src="/github.png" alt="GitHub" width={24} height={24} className="object-contain dark:invert" title="GitHub" />
-                </div>
-                <Button asChild variant="outline" className="w-full bg-transparent">
-                  <a href="https://github.com/Vasantjv-2005/Bug-Tracker-project.git" target="_blank" rel="noopener noreferrer">
-                    GitHub
-                    <ExternalLink className="ml-2 size-4" />
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
+          <motion.div variants={fadeUpVariant} className="h-full">
+            <ProjectCard
+              title="Bug Tracker"
+              description="Bug Tracking System"
+              longDescription="A powerful bug tracking system used to track, manage, and resolve bugs efficiently. Built with modern design principles and real-time updates."
+              image="/1.png"
+              link="https://github.com/Vasantjv-2005/Bug-Tracker-project.git"
+              technologies={[
+                { name: 'React', src: '/react.png' },
+                { name: 'Tailwind CSS', src: '/tailwind.png' },
+                { name: 'Node.js', src: '/images/node.png' },
+                { name: 'Next.js', src: '/next.png', invertDark: true },
+                { name: 'MongoDB', src: '/mongodb.png' }
+              ]}
+            />
+          </motion.div>
 
-            <Card className="group hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col rounded-lg">
-              <div className="relative w-full h-48 bg-muted overflow-hidden rounded-t-lg">
-                <Image
-                  src="/2.png"
-                  alt="Meter Flow"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                  Meter Flow
-                  <ExternalLink className="size-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                </CardTitle>
-                <CardDescription>API Key Management Platform</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <p className="text-muted-foreground mb-4">
-                  Generate, manage, and test API keys with production-ready analytics. Built with modern design principles and developer experience in mind.
-                </p>
-                <div className="flex flex-wrap items-center gap-3 mb-4 p-2 bg-secondary/30 rounded-lg">
-                  <Image src="/react.png" alt="React" width={24} height={24} className="object-contain" title="React" />
-                  <Image src="/tailwind.png" alt="Tailwind CSS" width={24} height={24} className="object-contain" title="Tailwind CSS" />
-                  <Image src="/ty.png" alt="TypeScript" width={24} height={24} className="object-contain" title="TypeScript" />
-                  <Image src="/next.png" alt="Next.js" width={24} height={24} className="object-contain" title="Next.js" />
-                  <Image src="/mongodb.png" alt="MongoDB" width={24} height={24} className="object-contain" title="MongoDB" />
-                  <Image src="/github.png" alt="GitHub" width={24} height={24} className="object-contain dark:invert" title="GitHub" />
-                </div>
-                <Button asChild variant="outline" className="w-full bg-transparent">
-                  <a href="https://github.com/Vasantjv-2005/METER-FLOW-API.git" target="_blank" rel="noopener noreferrer">
-                    View on GitHub
-                    <ExternalLink className="ml-2 size-4" />
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col rounded-lg">
-              <div className="relative w-full h-48 bg-muted overflow-hidden rounded-t-lg">
-                <Image
-                  src="/3.png"
-                  alt="Canvas Collab"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                  Canvas Collab
-                  <ExternalLink className="size-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                </CardTitle>
-                <CardDescription>Real-Time Collaborative Drawing</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <p className="text-muted-foreground mb-4">
-                  A real-time collaborative canvas application built with modern web technologies, enabling multiple
-                  users to draw and create together seamlessly.
-                </p>
-                <div className="flex flex-wrap items-center gap-3 mb-4 p-2 bg-secondary/30 rounded-lg">
-                  <Image src="/react.png" alt="React" width={24} height={24} className="object-contain" title="React" />
-                  <Image src="/ty.png" alt="TypeScript" width={24} height={24} className="object-contain" title="TypeScript" />
-                  <Image src="/next.png" alt="Next.js" width={24} height={24} className="object-contain" title="Next.js" />
-                  <Image src="/github.png" alt="GitHub" width={24} height={24} className="object-contain dark:invert" title="GitHub" />
-                </div>
-                <Button asChild variant="outline" className="w-full bg-transparent">
-                  <a href="https://canvas-collab-five.vercel.app/" target="_blank" rel="noopener noreferrer">
-                    View Project
-                    <ExternalLink className="ml-2 size-4" />
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col rounded-lg">
-              <div className="relative w-full h-48 bg-muted overflow-hidden rounded-t-lg">
-                <Image
-                  src="/4.png"
-                  alt="E-commerce Website"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                  E-commerce Website
-                  <ExternalLink className="size-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                </CardTitle>
-                <CardDescription>Premium Electronics Store</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <p className="text-muted-foreground mb-4">
-                  A comprehensive e-commerce platform with product listings, shopping cart functionality, and responsive
-                  design for optimal user experience.
-                </p>
-                <div className="flex flex-wrap items-center gap-3 mb-4 p-2 bg-secondary/30 rounded-lg">
-                  <Image src="/react.png" alt="React" width={24} height={24} className="object-contain" title="React" />
-                  <Image src="/ty.png" alt="TypeScript" width={24} height={24} className="object-contain" title="TypeScript" />
-                  <Image src="/next.png" alt="Next.js" width={24} height={24} className="object-contain" title="Next.js" />
-                  <Image src="/github.png" alt="GitHub" width={24} height={24} className="object-contain dark:invert" title="GitHub" />
-                </div>
-                <Button asChild variant="outline" className="w-full bg-transparent">
-                  <a href="https://endearing-pastelito-fec631.netlify.app/" target="_blank" rel="noopener noreferrer">
-                    View Project
-                    <ExternalLink className="ml-2 size-4" />
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
+          <motion.div variants={fadeUpVariant} className="h-full">
+            <ProjectCard
+              title="Canvas Collab"
+              description="Real-Time Collaborative Drawing"
+              longDescription="A real-time collaborative canvas application built with modern web technologies, enabling multiple users to draw and create together seamlessly."
+              image="/3.png"
+              link="https://canvas-collab-five.vercel.app/"
+              technologies={[
+                { name: 'React', src: '/react.png' },
+                { name: 'TypeScript', src: '/ty.png' },
+                { name: 'Tailwind CSS', src: '/tailwind.png' },
+                { name: 'Next.js', src: '/next.png', invertDark: true }
+              ]}
+            />
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <Separator className="container" />
+      {/* Services & Education */}
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+        className="container mx-auto px-4 py-32"
+      >
+        <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+          <motion.div variants={fadeUpVariant} className="space-y-8">
+            <h2 className="text-4xl font-black mb-8 flex items-center gap-4">
+              <Palette className="size-10 text-primary" />
+              Services
+            </h2>
+            <MagicCard className="p-8 glass-card rounded-3xl mb-6">
+              <h3 className="text-2xl font-bold mb-4 text-foreground">Web Designer</h3>
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                I transform ideas into engaging digital experiences with visually stunning and user-friendly interfaces.
+              </p>
+            </MagicCard>
+            <MagicCard className="p-8 glass-card rounded-3xl" glareColor="rgba(147, 51, 234, 0.2)">
+              <h3 className="text-2xl font-bold mb-4 text-foreground">Web Developer</h3>
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                I build fast, functional, and user-focused websites turning ideas into interactive digital experiences using modern web technologies.
+              </p>
+            </MagicCard>
+          </motion.div>
 
-      {/* Education Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <GraduationCap className="size-8" />
-            <h2 className="text-3xl md:text-4xl font-bold">Education</h2>
-          </div>
-          <div className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>BS-MS in Computer Science</CardTitle>
-                <CardDescription className="text-base">Vishwa Vishwani Institute · 2023 - Present</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Currently pursuing Bachelor of Science in Computer Science, focusing on modern software development
-                  practices and emerging technologies.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>High School</CardTitle>
-                <CardDescription className="text-base">Narayana Junior College · Graduated 2020</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Completed high school education with an outstanding 10.0 CGPA, demonstrating academic excellence and
-                  dedication to learning.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
+          <motion.div variants={fadeUpVariant} className="space-y-8">
+            <h2 className="text-4xl font-black mb-8 flex items-center gap-4">
+              <GraduationCap className="size-10 text-accent" />
+              Education
+            </h2>
+            <MagicCard className="p-8 glass-card rounded-3xl mb-6 border-l-4 border-l-accent">
+              <h3 className="text-2xl font-bold mb-2 text-foreground">BS-MS in Computer Science</h3>
+              <p className="text-accent mb-4 font-mono text-sm">Vishwa Vishwani Institute · 2023 - Present</p>
+              <p className="text-muted-foreground leading-relaxed">
+                Currently pursuing Bachelor of Science in Computer Science, focusing on modern software development practices and emerging technologies.
+              </p>
+            </MagicCard>
+            <MagicCard className="p-8 glass-card rounded-3xl border-l-4 border-l-primary/50">
+              <h3 className="text-2xl font-bold mb-2 text-foreground">High School</h3>
+              <p className="text-primary/80 mb-4 font-mono text-sm">Narayana Junior College · Graduated 2020</p>
+              <p className="text-muted-foreground leading-relaxed">
+                Completed high school education with an outstanding 10.0 CGPA, demonstrating academic excellence and dedication to learning.
+              </p>
+            </MagicCard>
+          </motion.div>
         </div>
-      </section>
-
-      <Separator className="container" />
+      </motion.section>
 
       {/* CTA Section */}
-      <section id="contact" className="container mx-auto px-4 py-24">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-            Looking for a developer who builds fast, clean, and scalable products?
+      <motion.section 
+        id="contact"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeUpVariant}
+        className="container mx-auto px-4 py-40 relative"
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(var(--primary),0.15),transparent_70%)] pointer-events-none" />
+        <div className="max-w-4xl mx-auto text-center relative z-10 bg-card p-16 rounded-[3rem] shadow-xl">
+          <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight tracking-tighter">
+            Looking for a developer who builds <br className="hidden md:block"/>
+            <span className="gradient-text">extraordinary</span> products?
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground mb-10">
-            If you have an opportunity that deserves someone who actually delivers
+          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto">
+            If you have an opportunity that deserves someone who actually delivers, let&apos;s build the future together.
           </p>
-          <Button asChild size="lg">
+          <Button asChild size="lg" className="rounded-full px-12 py-8 text-xl font-bold bg-foreground text-background hover:bg-foreground/90 hover:scale-105 transition-all shadow-[0_0_30px_rgba(var(--primary),0.3)]">
             <a href="mailto:vasantjv2005@gmail.com">
-              <Send className="mr-2 size-4" />
-              Let’s Talk
+              <Send className="mr-3 size-6" />
+              Let’s Talk Now
             </a>
           </Button>
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer */}
-      <footer className="border-t mt-20">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center text-muted-foreground space-y-1">
-            <p>
-              Designed & Developed by <span className="font-medium text-foreground">Vasant Jevengekar</span>
-            </p>
-            <p>Inspired by great portfolios across the web</p>
-            <p>
-              <span className="mr-2">Local time:</span>
-              <Clock className="font-mono" />
-            </p>
+      <footer className="border-t border-black/5 dark:border-white/10 mt-20 bg-background/80 backdrop-blur-xl relative z-20 pb-24 md:pb-10">
+        <div className="container mx-auto px-4 py-12">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-muted-foreground">
+            <div className="flex items-center gap-4">
+              <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+                <span className="text-primary font-bold">V</span>
+              </div>
+              <div>
+                <p className="font-semibold text-foreground">Vasant Jevengekar</p>
+                <p className="text-sm">Cinematic Web Experiences</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-6">
+              <p className="flex items-center gap-2 text-sm bg-secondary/50 px-4 py-2 rounded-full border border-black/5 dark:border-white/10 text-foreground">
+                <span className="relative flex size-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full size-2 bg-green-500"></span>
+                </span>
+                Local time: <Clock className="font-mono text-foreground" />
+              </p>
+            </div>
           </div>
         </div>
       </footer>
     </div>
   )
 }
+
