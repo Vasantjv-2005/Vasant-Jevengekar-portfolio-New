@@ -9,20 +9,21 @@ export function VisitorCounter() {
   useEffect(() => {
     const fetchVisitorCount = async () => {
       try {
-        // Check if this user has already visited to avoid incrementing on every refresh
         const hasVisited = localStorage.getItem("has_visited_portfolio")
-        const url = hasVisited 
-          ? "https://api.counterapi.dev/v1/vasant-portfolio/visits"
-          : "https://api.counterapi.dev/v1/vasant-portfolio/visits/up"
+        const url = hasVisited
+          ? "/api/visitor-count"
+          : "/api/visitor-count?increment=true"
 
         const response = await fetch(url)
         const data = await response.json()
-        
-        if (data && typeof data.count === 'number') {
+
+        if (response.ok && data && typeof data.count === "number") {
           setCount(data.count)
           if (!hasVisited) {
             localStorage.setItem("has_visited_portfolio", "true")
           }
+        } else {
+          console.error("Visitor count fetch failed:", data)
         }
       } catch (error) {
         console.error("Error fetching visitor count:", error)
