@@ -16,6 +16,7 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import { Clock } from "@/components/clock"
+import { VisitorCounter } from "@/components/visitor-counter"
 import { motion } from "framer-motion"
 import { CursorGlow } from "@/components/ui/cursor-glow"
 import { AnimatedBackground } from "@/components/ui/animated-background"
@@ -538,7 +539,7 @@ export default function Portfolio() {
               </div>
             </div>
             
-            <div className="flex items-center gap-6">
+            <div className="flex flex-col items-center md:items-end gap-3">
               <p className="flex items-center gap-2 text-sm bg-secondary/50 px-4 py-2 rounded-full border border-black/5 dark:border-white/10 text-foreground">
                 <span className="relative flex size-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -546,6 +547,7 @@ export default function Portfolio() {
                 </span>
                 Local time: <Clock className="font-mono text-foreground" />
               </p>
+              <VisitorCounter />
             </div>
           </div>
         </div>
