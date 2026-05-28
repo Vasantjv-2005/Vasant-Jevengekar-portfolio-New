@@ -418,7 +418,8 @@ export default function Portfolio() {
               description="Bug Tracking System"
               longDescription="A powerful bug tracking system used to track, manage, and resolve bugs efficiently. Built with modern design principles and real-time updates."
               image="/1.png"
-              link="https://github.com/Vasantjv-2005/Bug-Tracker-project.git"
+              liveLink="https://bug-tracker-project-o1em.vercel.app/"
+              githubLink="https://github.com/Vasantjv-2005/Bug-Tracker-project.git"
               technologies={[
                 { name: 'React', src: '/react.png' },
                 { name: 'Tailwind CSS', src: '/tailwind.png' },

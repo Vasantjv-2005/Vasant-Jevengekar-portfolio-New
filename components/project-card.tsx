@@ -12,11 +12,13 @@ interface ProjectCardProps {
   description: string
   longDescription: string
   image: string
-  link: string
+  liveLink?: string
+  githubLink?: string
+  link?: string
   technologies: { name: string; src: string; invertDark?: boolean }[]
 }
 
-export function ProjectCard({ title, description, longDescription, image, link, technologies }: ProjectCardProps) {
+export function ProjectCard({ title, description, longDescription, image, liveLink, githubLink, link, technologies }: ProjectCardProps) {
   return (
     <MagicCard className="group h-full flex flex-col rounded-2xl bg-transparent border border-black/10 dark:border-white/10 overflow-hidden hover:border-primary/50 transition-colors" glareColor="rgba(147, 51, 234, 0.2)">
       <div className="relative w-full h-56 overflow-hidden border-b border-black/5 dark:border-white/5">
@@ -54,15 +56,41 @@ export function ProjectCard({ title, description, longDescription, image, link, 
           ))}
         </div>
         
-        <a 
-          href={link} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center w-full py-3 px-4 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl font-semibold transition-all hover:shadow-[0_0_15px_rgba(var(--primary),0.3)]"
-        >
-          View Project
-          <ExternalLink className="ml-2 size-4" />
-        </a>
+        <div className="flex flex-col gap-3">
+          {liveLink && (
+            <a 
+              href={liveLink} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-full py-3 px-4 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl font-semibold transition-all hover:shadow-[0_0_15px_rgba(var(--primary),0.3)]"
+            >
+              Live Project
+              <ExternalLink className="ml-2 size-4" />
+            </a>
+          )}
+          {githubLink && (
+            <a 
+              href={githubLink} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-full py-3 px-4 bg-foreground/5 hover:bg-foreground/10 text-foreground border border-foreground/10 rounded-xl font-semibold transition-all"
+            >
+              GitHub Link
+              <ExternalLink className="ml-2 size-4" />
+            </a>
+          )}
+          {link && !liveLink && !githubLink && (
+            <a 
+              href={link} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-full py-3 px-4 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-xl font-semibold transition-all hover:shadow-[0_0_15px_rgba(var(--primary),0.3)]"
+            >
+              View Project
+              <ExternalLink className="ml-2 size-4" />
+            </a>
+          )}
+        </div>
       </CardContent>
     </MagicCard>
   )
