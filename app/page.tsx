@@ -13,11 +13,12 @@ import {
   User,
   FolderDot,
   ExternalLink,
-  BookOpen
+  BookOpen,
+  ArrowUpRight
 } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import { Clock } from "@/components/clock"
-import { VisitorCounter } from "@/components/visitor-counter"
 import { motion } from "framer-motion"
 import { CursorGlow } from "@/components/ui/cursor-glow"
 import { AnimatedBackground } from "@/components/ui/animated-background"
@@ -27,6 +28,8 @@ import { HeroSection } from "@/components/hero-section"
 import { ExperienceSection } from "@/components/experience-section"
 import { ProjectCard } from "@/components/project-card"
 import { ResearchSection } from "@/components/research-section"
+import { StackSection } from "@/components/stack-section"
+import { ALL_PROJECTS } from "@/lib/projects-data"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
@@ -107,98 +110,8 @@ export default function Portfolio() {
       {/* Experience Section */}
       <ExperienceSection />
 
-      {/* Technical Skills - Bento Grid */}
-      <motion.section 
-        id="skills"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-        className="container mx-auto px-4 py-32"
-      >
-        <motion.div variants={fadeUpVariant} className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black mb-4">Technical <span className="gradient-text">Arsenal</span></h2>
-          <p className="text-xl text-muted-foreground">The tools I use to build digital experiences</p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          <motion.div variants={fadeUpVariant} className="md:col-span-1">
-            <MagicCard className="h-full glass-card p-8 rounded-3xl">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-primary/20 rounded-2xl glow-border">
-                  <Code2 className="size-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold">Frontend</h3>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { name: 'React', src: '/react.png' },
-                  { name: 'Next.js', src: '/next.png' },
-                  { name: 'TypeScript', src: '/ty.png' },
-                  { name: 'Tailwind', src: '/tailwind.png' },
-                  { name: 'HTML', src: '/images/html.png' },
-                  { name: 'CSS', src: '/images/css.png' },
-                  { name: 'JavaScript', src: '/images/js.png' },
-                ].map((tech) => (
-                  <div key={tech.name} className="flex flex-col items-center p-4 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors">
-                    <Image src={tech.src} alt={tech.name} width={40} height={40} className="mb-3 object-contain drop-shadow-lg" />
-                    <span className="text-xs font-medium text-foreground/80">{tech.name}</span>
-                  </div>
-                ))}
-              </div>
-            </MagicCard>
-          </motion.div>
-
-          <motion.div variants={fadeUpVariant} className="md:col-span-1">
-            <MagicCard className="h-full glass-card p-8 rounded-3xl">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-black dark:bg-white rounded-2xl glow-border">
-                  <Database className="size-8 text-white dark:text-black" />
-                </div>
-                <h3 className="text-2xl font-bold">Backend</h3>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { name: 'Node.js', src: '/images/node.png' },
-                  { name: 'MongoDB', src: '/mongodb.png' },
-                  { name: 'Redis', src: '/images/redis.png' }
-                ].map((tech) => (
-                  <div key={tech.name} className="flex flex-col items-center p-4 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors">
-                    <Image src={tech.src} alt={tech.name} width={40} height={40} className="mb-3 object-contain drop-shadow-lg" />
-                    <span className="text-xs font-medium text-foreground/80">{tech.name}</span>
-                  </div>
-                ))}
-              </div>
-            </MagicCard>
-          </motion.div>
-
-          <motion.div variants={fadeUpVariant} className="md:col-span-1">
-            <MagicCard className="h-full glass-card p-8 rounded-3xl">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-purple-500/20 rounded-2xl glow-border">
-                  <Briefcase className="size-8 text-purple-400" />
-                </div>
-                <h3 className="text-2xl font-bold">Tools</h3>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { name: 'VS Code', src: '/images/vs.png' },
-                  { name: 'Antigravity', src: '/images/anti.png' },
-                  { name: 'GitHub', src: '/github.png', invert: true },
-                  { name: 'Vercel', src: '/images/vercel.png', invert: true },
-                  { name: 'Netlify', src: '/images/net.png' },
-                  { name: 'Postman', src: '/images/postman.png' }
-                ].map((tech) => (
-                  <div key={tech.name} className="flex flex-col items-center p-4 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors">
-                    <Image src={tech.src} alt={tech.name} width={40} height={40} className={`mb-3 object-contain drop-shadow-lg ${tech.invert ? 'dark:invert' : ''}`} />
-                    <span className="text-xs font-medium text-foreground/80">{tech.name}</span>
-                  </div>
-                ))}
-              </div>
-            </MagicCard>
-          </motion.div>
-        </div>
-      </motion.section>
+      {/* Technical Skills - STACK Section */}
+      <StackSection />
 
       {/* Projects Showcase */}
       <motion.section 
@@ -216,75 +129,37 @@ export default function Portfolio() {
           <p className="text-xl text-muted-foreground">Cinematic showcases of my latest work</p>
         </motion.div>
 
+        {/* 2 Projects Visible */}
         <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          <motion.div variants={fadeUpVariant} className="h-full">
-            <ProjectCard
-              title="Integrated Food Delivery System"
-              description="Full-Stack Food Delivery Platform"
-              longDescription="An integrated food delivery system is a full-stack application that allows users to browse restaurants, explore menus, add items to a cart, place orders, make payments, and track deliveries in real time."
-              image="/6.png"
-              link="https://github.com/Vasantjv-2005/Integrated-Food-Delivery-and-Dine-out-Hospitality-platform.git"
-              technologies={[
-                { name: 'React', src: '/react.png' },
-                { name: 'Tailwind CSS', src: '/tailwind.png' },
-                { name: 'TypeScript', src: '/ty.png' },
-                { name: 'Next.js', src: '/next.png', invertDark: true },
-                { name: 'MongoDB', src: '/mongodb.png' }
-              ]}
-            />
-          </motion.div>
-          
-          <motion.div variants={fadeUpVariant} className="h-full">
-            <ProjectCard
-              title="Meter Flow"
-              description="API Key Management Platform"
-              longDescription="Generate, manage, and test API keys with production-ready analytics. Built with modern design principles and developer experience in mind."
-              image="/2.png"
-              link="https://github.com/Vasantjv-2005/METER-FLOW-API.git"
-              technologies={[
-                { name: 'React', src: '/react.png' },
-                { name: 'TypeScript', src: '/ty.png' },
-                { name: 'Tailwind CSS', src: '/tailwind.png' },
-                { name: 'Next.js', src: '/next.png', invertDark: true },
-                { name: 'MongoDB', src: '/mongodb.png' }
-              ]}
-            />
-          </motion.div>
-
-          <motion.div variants={fadeUpVariant} className="h-full">
-            <ProjectCard
-              title="Bug Tracker"
-              description="Bug Tracking System"
-              longDescription="A powerful bug tracking system used to track, manage, and resolve bugs efficiently. Built with modern design principles and real-time updates."
-              image="/1.png"
-              liveLink="https://bug-tracker-project-o1em.vercel.app/"
-              githubLink="https://github.com/Vasantjv-2005/Bug-Tracker-project.git"
-              technologies={[
-                { name: 'React', src: '/react.png' },
-                { name: 'Tailwind CSS', src: '/tailwind.png' },
-                { name: 'Node.js', src: '/images/node.png' },
-                { name: 'Next.js', src: '/next.png', invertDark: true },
-                { name: 'MongoDB', src: '/mongodb.png' }
-              ]}
-            />
-          </motion.div>
-
-          <motion.div variants={fadeUpVariant} className="h-full">
-            <ProjectCard
-              title="Canvas Collab"
-              description="Real-Time Collaborative Drawing"
-              longDescription="A real-time collaborative canvas application built with modern web technologies, enabling multiple users to draw and create together seamlessly."
-              image="/3.png"
-              link="https://canvas-collab-five.vercel.app/"
-              technologies={[
-                { name: 'React', src: '/react.png' },
-                { name: 'TypeScript', src: '/ty.png' },
-                { name: 'Tailwind CSS', src: '/tailwind.png' },
-                { name: 'Next.js', src: '/next.png', invertDark: true }
-              ]}
-            />
-          </motion.div>
+          {ALL_PROJECTS.slice(0, 2).map((project) => (
+            <motion.div key={project.id} variants={fadeUpVariant} className="h-full">
+              <ProjectCard
+                title={project.title}
+                description={project.description}
+                longDescription={project.longDescription}
+                image={project.image}
+                liveLink={project.liveLink}
+                githubLink={project.githubLink}
+                link={project.link}
+                technologies={project.technologies}
+                statusBadge={project.statusBadge}
+              />
+            </motion.div>
+          ))}
         </div>
+
+        {/* View All Projects Button - navigates to dedicated /projects page */}
+        <motion.div variants={fadeUpVariant} className="text-center mt-12 flex justify-center items-center">
+          <Button asChild size="lg" className="rounded-full px-8 py-6 text-base font-bold bg-foreground text-background hover:bg-foreground/90 transition-all hover:scale-105 shadow-[0_0_30px_rgba(var(--primary),0.25)]">
+            <Link 
+              href="/projects"
+              className="inline-flex items-center gap-2"
+            >
+              <span>View All Projects</span>
+              <ArrowUpRight className="size-5" />
+            </Link>
+          </Button>
+        </motion.div>
       </motion.section>
 
       {/* Research & Publications Section */}
@@ -382,7 +257,7 @@ export default function Portfolio() {
               </div>
             </div>
             
-            <div className="flex flex-col items-center md:items-end gap-3">
+            <div className="flex items-center md:items-end">
               <p className="flex items-center gap-2 text-sm bg-secondary/50 px-4 py-2 rounded-full border border-black/5 dark:border-white/10 text-foreground">
                 <span className="relative flex size-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -390,7 +265,6 @@ export default function Portfolio() {
                 </span>
                 Local time: <Clock className="font-mono text-foreground" />
               </p>
-              <VisitorCounter />
             </div>
           </div>
         </div>

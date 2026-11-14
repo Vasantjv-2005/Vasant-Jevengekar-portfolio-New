@@ -16,9 +16,10 @@ interface ProjectCardProps {
   githubLink?: string
   link?: string
   technologies: { name: string; src: string; invertDark?: boolean }[]
+  statusBadge?: React.ReactNode
 }
 
-export function ProjectCard({ title, description, longDescription, image, liveLink, githubLink, link, technologies }: ProjectCardProps) {
+export function ProjectCard({ title, description, longDescription, image, liveLink, githubLink, link, technologies, statusBadge }: ProjectCardProps) {
   return (
     <MagicCard className="group h-full flex flex-col rounded-2xl bg-transparent border border-black/10 dark:border-white/10 overflow-hidden hover:border-primary/50 transition-colors" glareColor="rgba(147, 51, 234, 0.2)">
       <div className="relative w-full h-56 overflow-hidden border-b border-black/5 dark:border-white/5">
@@ -32,7 +33,13 @@ export function ProjectCard({ title, description, longDescription, image, liveLi
       
       <CardContent className="flex-grow flex flex-col pt-6 px-6 pb-6 relative z-20 bg-transparent">
         <h3 className="text-2xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">{title}</h3>
-        <p className="text-sm font-medium text-muted-foreground mb-4">{description}</p>
+        <p className="text-sm font-medium text-muted-foreground mb-3">{description}</p>
+        
+        {statusBadge && (
+          <div className="mb-3">
+            {statusBadge}
+          </div>
+        )}
         
         <p className="text-muted-foreground mb-6 text-sm leading-relaxed flex-grow">
           {longDescription}

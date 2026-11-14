@@ -65,25 +65,76 @@ export function HeroSection() {
           </a>
         </motion.div>
 
-        <motion.div variants={item} className="flex gap-6">
-          {[
-            { icon: <Linkedin className="size-6" />, href: "https://www.linkedin.com/in/j-vasant-3226612b5/" },
-            { icon: <Github className="size-6" />, href: "https://github.com/Vasantjv-2005" },
-            { icon: <Mail className="size-6" />, href: "mailto:vasantjv2005@gmail.com" },
-            { icon: <Image src="/images/x.png" alt="X" width={24} height={24} className="rounded-sm object-contain" />, href: "https://x.com/VasantJeve78956" }
-          ].map((social, i) => (
-            <motion.a
-              key={i}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.2, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-              className="p-4 rounded-full bg-secondary/50 backdrop-blur-md border border-white/5 hover:border-primary/50 text-muted-foreground hover:text-primary transition-colors"
-            >
-              {social.icon}
-            </motion.a>
-          ))}
+        <motion.div variants={item} className="flex items-center justify-center gap-7 md:gap-9 text-muted-foreground/80">
+          {/* X (Twitter) */}
+          <a
+            href="https://x.com/VasantJeve78956"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X (Twitter)"
+            className="hover:text-foreground transition-all duration-200 hover:scale-110"
+          >
+            <svg viewBox="0 0 24 24" className="size-5 md:size-6 stroke-[1.6]" fill="none" stroke="currentColor">
+              <path d="M4 4l16 16m0-16L4 20" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
+
+          {/* LinkedIn */}
+          <a
+            href="https://www.linkedin.com/in/j-vasant-3226612b5/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="hover:text-foreground transition-all duration-200 hover:scale-110"
+          >
+            <svg viewBox="0 0 24 24" className="size-5 md:size-6 stroke-[1.6]" fill="none" stroke="currentColor">
+              <rect x="3" y="3" width="18" height="18" rx="4" />
+              <line x1="8" y1="11" x2="8" y2="17" />
+              <line x1="8" y1="8" x2="8" y2="8.01" />
+              <path d="M12 17v-3.5a2.5 2.5 0 0 1 5 0V17" />
+              <line x1="12" y1="11" x2="12" y2="17" />
+            </svg>
+          </a>
+
+          {/* GitHub */}
+          <a
+            href="https://github.com/Vasantjv-2005"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="hover:text-foreground transition-all duration-200 hover:scale-110"
+          >
+            <svg viewBox="0 0 24 24" className="size-5 md:size-6 stroke-[1.6]" fill="none" stroke="currentColor">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
+
+          {/* Peerlist */}
+          <a
+            href="https://peerlist.io/vasantjv2005"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Vasant Jevengekar on Peerlist"
+            className="hover:text-foreground transition-all duration-200 hover:scale-110"
+          >
+            <svg viewBox="0 0 24 24" className="size-5 md:size-6 stroke-[1.6]" fill="none" stroke="currentColor">
+              <circle cx="6" cy="12" r="3" />
+              <ellipse cx="12" cy="12" rx="2.5" ry="4" />
+              <ellipse cx="18" cy="12" rx="1.5" ry="5" />
+            </svg>
+          </a>
+
+          {/* Email */}
+          <a
+            href="mailto:vasantjv2005@gmail.com"
+            aria-label="Email"
+            className="hover:text-foreground transition-all duration-200 hover:scale-110"
+          >
+            <svg viewBox="0 0 24 24" className="size-5 md:size-6 stroke-[1.6]" fill="none" stroke="currentColor">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="M3 7l9 6 9-6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
         </motion.div>
       </motion.div>
     </section>

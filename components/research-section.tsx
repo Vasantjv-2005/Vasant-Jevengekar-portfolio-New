@@ -34,7 +34,7 @@ export const RESEARCH_PAPER = {
   presentation: 'Presented at the ICSSR-SRC sponsored Two-Day National Seminar on "Ethics on Artificial Intelligence – Challenges, Responsibilities and Future Directions"',
   institution: "Vishwa Vishwani Institute of Systems and Management",
   presentationDates: "12–13 November 2026",
-  description: "This research explores an AI-based Skill Graph Framework that goes beyond traditional resumes by identifying skills, understanding relationships between them, and predicting future employability. It aims to provide a smarter approach to understanding an individual's skills and career readiness.",
+  description: "Published a research paper titled “ Beyond the Resume: An AI-Based Skill Graph Framework for Predicting Future Employability ”, published by ICSSR-SRC in the International Journal for Innovative Engineering and Management Research.",
   pdfFileName: "561371793950954.pdf",
   topics: [
     "AI Skill Graph",
@@ -45,11 +45,11 @@ export const RESEARCH_PAPER = {
 }
 
 const fadeUpVariant = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 25 },
   visible: { 
     opacity: 1, 
     y: 0, 
-    transition: { duration: 0.6 } 
+    transition: { duration: 0.5 } 
   }
 }
 
@@ -71,24 +71,24 @@ export function ResearchSection() {
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
       variants={fadeUpVariant}
-      className="container mx-auto px-4 py-32 relative scroll-mt-20"
+      className="container mx-auto px-4 py-20 md:py-24 relative scroll-mt-20"
     >
       {/* Anchor for #research */}
       <div id="research" className="absolute -top-24 pointer-events-none" />
       
       {/* Background ambient lighting */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-primary/5 blur-[160px] -z-10 rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-primary/5 blur-[140px] -z-10 rounded-full pointer-events-none" />
 
       {/* Section Header */}
-      <div className="text-center mb-16">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold mb-4">
-          <BookOpen className="size-4" />
+      <div className="text-center mb-10 md:mb-12">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-3">
+          <BookOpen className="size-3.5" />
           <span>Articles &amp; Publications</span>
         </div>
-        <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight">
+        <h2 className="text-3xl md:text-4xl font-extrabold mb-3 tracking-tight">
           Research &amp; <span className="gradient-text">Publications</span>
         </h2>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-sm md:text-base text-muted-foreground max-w-xl mx-auto">
           Peer-reviewed academic contributions advancing artificial intelligence in employability modeling and skill prediction
         </p>
       </div>
@@ -96,24 +96,24 @@ export function ResearchSection() {
       {/* Research Paper Premium Card */}
       <div className="max-w-4xl mx-auto">
         <MagicCard 
-          className="glass-card rounded-3xl p-8 md:p-10 border border-black/10 dark:border-white/10 relative overflow-hidden transition-all duration-300 hover:border-primary/40 shadow-xl"
+          className="glass-card rounded-2xl md:rounded-3xl p-6 md:p-8 border border-black/10 dark:border-white/10 relative overflow-hidden transition-all duration-300 hover:border-primary/40 shadow-xl"
           glareColor="rgba(6, 182, 212, 0.2)"
         >
           {/* Subtle Corner Glow */}
-          <div className="absolute -top-24 -right-24 size-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -top-20 -right-20 size-56 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
           {/* Card Top: Badges and Quick Meta */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 relative z-10">
+          <div className="flex flex-wrap items-center justify-between gap-2.5 mb-5 relative z-10">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                <CheckCircle2 className="size-3.5" />
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                <CheckCircle2 className="size-3" />
                 Published Research
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-600 dark:text-purple-300 border border-purple-500/20">
-                <Sparkles className="size-3.5" />
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-purple-500/10 text-purple-600 dark:text-purple-300 border border-purple-500/20">
+                <Sparkles className="size-3" />
                 Paper Presented
               </span>
-              <span className="hidden sm:inline-flex items-center px-3 py-1 rounded-full text-xs font-mono bg-secondary/80 text-muted-foreground border border-black/5 dark:border-white/5">
+              <span className="hidden sm:inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-secondary/80 text-muted-foreground border border-black/5 dark:border-white/5">
                 ISSN: {RESEARCH_PAPER.issn}
               </span>
             </div>
@@ -121,17 +121,17 @@ export function ResearchSection() {
             <button
               onClick={handleCopyCitation}
               type="button"
-              className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors px-2.5 py-1 rounded-lg bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-[11px] text-muted-foreground hover:text-foreground transition-colors px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 cursor-pointer"
               title="Copy academic citation"
             >
               {copied ? (
                 <>
-                  <Check className="size-3.5 text-emerald-500" />
+                  <Check className="size-3 text-emerald-500" />
                   <span className="text-emerald-500 font-medium">Citation Copied</span>
                 </>
               ) : (
                 <>
-                  <Copy className="size-3.5" />
+                  <Copy className="size-3" />
                   <span>Cite Paper</span>
                 </>
               )}
@@ -139,22 +139,22 @@ export function ResearchSection() {
           </div>
 
           {/* Paper Title & Main Icon */}
-          <div className="flex items-start gap-5 mb-6 relative z-10">
-            <div className="p-3.5 rounded-2xl bg-primary/10 border border-primary/20 text-primary shrink-0 glow-border hidden sm:flex items-center justify-center">
-              <FileText className="size-8" />
+          <div className="flex items-start gap-4 mb-5 relative z-10">
+            <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20 text-primary shrink-0 glow-border hidden sm:flex items-center justify-center">
+              <FileText className="size-6" />
             </div>
             <div>
-              <h3 className="text-2xl md:text-3xl font-extrabold text-foreground tracking-tight leading-snug mb-3">
+              <h3 className="text-xl md:text-2xl font-bold text-foreground tracking-tight leading-snug mb-2">
                 {RESEARCH_PAPER.title}
               </h3>
-              <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-sm text-muted-foreground">
+              <div className="flex flex-wrap items-center gap-y-1.5 gap-x-3 text-xs text-muted-foreground">
                 <span className="flex items-center gap-1.5 font-medium text-foreground">
-                  <span className="size-2 rounded-full bg-primary" />
+                  <span className="size-1.5 rounded-full bg-primary" />
                   Author: <strong className="font-semibold">{RESEARCH_PAPER.author}</strong>
                 </span>
                 <span className="text-muted-foreground/60">•</span>
                 <span className="flex items-center gap-1.5">
-                  <Building2 className="size-4 text-primary/80" />
+                  <Building2 className="size-3.5 text-primary/80" />
                   {RESEARCH_PAPER.institution}
                 </span>
               </div>
@@ -162,17 +162,17 @@ export function ResearchSection() {
           </div>
 
           {/* Research Description Callout */}
-          <div className="p-5 md:p-6 rounded-2xl bg-secondary/40 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 mb-8 relative z-10">
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              &ldquo;{RESEARCH_PAPER.description}&rdquo;
+          <div className="p-4 md:p-5 rounded-xl bg-secondary/40 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 mb-6 relative z-10">
+            <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+              Published a research paper titled “ <span className="italic font-semibold text-foreground">Beyond the Resume: An AI-Based Skill Graph Framework for Predicting Future Employability</span> ”, published by ICSSR-SRC in the International Journal for Innovative Engineering and Management Research.
             </p>
             
             {/* Topic Chips */}
-            <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-black/5 dark:border-white/5">
+            <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-black/5 dark:border-white/5">
               {RESEARCH_PAPER.topics.map((topic, i) => (
                 <span 
                   key={i}
-                  className="px-2.5 py-1 text-xs rounded-md bg-background/80 dark:bg-white/5 border border-black/5 dark:border-white/10 text-muted-foreground font-medium"
+                  className="px-2 py-0.5 text-[11px] rounded-md bg-background/80 dark:bg-white/5 border border-black/5 dark:border-white/10 text-muted-foreground font-medium"
                 >
                   #{topic}
                 </span>
@@ -181,55 +181,55 @@ export function ResearchSection() {
           </div>
 
           {/* Publication & Presentation Details Grid */}
-          <div className="grid sm:grid-cols-2 gap-4 mb-8 relative z-10">
+          <div className="grid sm:grid-cols-2 gap-3.5 mb-6 relative z-10">
             {/* Journal Details */}
-            <div className="p-4 rounded-xl bg-secondary/30 dark:bg-zinc-900/40 border border-black/5 dark:border-white/5">
-              <div className="flex items-center gap-2 mb-2 text-primary font-semibold text-sm">
-                <BookOpen className="size-4" />
+            <div className="p-3.5 rounded-xl bg-secondary/30 dark:bg-zinc-900/40 border border-black/5 dark:border-white/5">
+              <div className="flex items-center gap-1.5 mb-1.5 text-primary font-semibold text-xs">
+                <BookOpen className="size-3.5" />
                 <span>Journal Details</span>
               </div>
-              <p className="font-semibold text-foreground text-sm leading-snug mb-1">
+              <p className="font-semibold text-foreground text-xs md:text-sm leading-snug mb-1">
                 {RESEARCH_PAPER.journal}
               </p>
-              <div className="text-xs text-muted-foreground space-y-0.5 font-mono">
+              <div className="text-[11px] text-muted-foreground space-y-0.5 font-mono">
                 <p>Volume: {RESEARCH_PAPER.volume}</p>
                 <p>ISSN: {RESEARCH_PAPER.issn} · DOI Prefix: {RESEARCH_PAPER.doiPrefix}</p>
               </div>
             </div>
 
             {/* Presentation Details */}
-            <div className="p-4 rounded-xl bg-secondary/30 dark:bg-zinc-900/40 border border-black/5 dark:border-white/5">
-              <div className="flex items-center gap-2 mb-2 text-purple-400 font-semibold text-sm">
-                <GraduationCap className="size-4" />
+            <div className="p-3.5 rounded-xl bg-secondary/30 dark:bg-zinc-900/40 border border-black/5 dark:border-white/5">
+              <div className="flex items-center gap-1.5 mb-1.5 text-purple-400 font-semibold text-xs">
+                <GraduationCap className="size-3.5" />
                 <span>Seminar &amp; Presentation</span>
               </div>
-              <p className="font-medium text-foreground text-xs leading-relaxed mb-2">
+              <p className="font-medium text-foreground text-[11px] md:text-xs leading-relaxed mb-1.5">
                 {RESEARCH_PAPER.presentation}
               </p>
-              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                <Calendar className="size-3.5 text-primary/70" />
+              <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                <Calendar className="size-3 text-primary/70" />
                 <span>Dates: <strong className="text-foreground">{RESEARCH_PAPER.presentationDates}</strong></span>
               </div>
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 relative z-10 pt-2 border-t border-black/5 dark:border-white/5">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 relative z-10 pt-2 border-t border-black/5 dark:border-white/5">
             {/* Read Research Paper Button */}
             <a
               href={RESEARCH_PAPER.articleUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all hover:scale-[1.02] shadow-[0_0_20px_rgba(var(--primary),0.25)] text-center cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-xs md:text-sm font-semibold hover:bg-primary/90 transition-all hover:scale-[1.02] shadow-[0_0_20px_rgba(var(--primary),0.25)] text-center cursor-pointer"
             >
-              <FileText className="size-4" />
+              <FileText className="size-3.5" />
               <span>Read Research Paper</span>
-              <ExternalLink className="size-4 ml-1" />
+              <ExternalLink className="size-3.5 ml-0.5" />
             </a>
           </div>
 
           {/* Direct File Link Pill */}
-          <div className="mt-4 pt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground relative z-10">
+          <div className="mt-3.5 pt-2.5 flex flex-wrap items-center justify-between gap-2 text-[11px] text-muted-foreground relative z-10">
             <span className="flex items-center gap-1.5">
               <span className="size-1.5 rounded-full bg-emerald-500" />
               Official Document:
