@@ -12,7 +12,8 @@ import {
   Home,
   User,
   FolderDot,
-  ExternalLink
+  ExternalLink,
+  BookOpen
 } from "lucide-react"
 import Image from "next/image"
 import { Clock } from "@/components/clock"
@@ -25,6 +26,7 @@ import { MagicCard } from "@/components/ui/magic-card"
 import { HeroSection } from "@/components/hero-section"
 import { ExperienceSection } from "@/components/experience-section"
 import { ProjectCard } from "@/components/project-card"
+import { ResearchSection } from "@/components/research-section"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
@@ -49,6 +51,7 @@ export default function Portfolio() {
     { icon: <User className="size-5" />, label: "About", href: "#about" },
     { icon: <Briefcase className="size-5" />, label: "Experience", href: "#experience" },
     { icon: <FolderDot className="size-5" />, label: "Projects", href: "#projects" },
+    { icon: <BookOpen className="size-5" />, label: "Publications", href: "#publications" },
     { icon: <Send className="size-5" />, label: "Contact", href: "#contact" },
   ]
 
@@ -283,6 +286,9 @@ export default function Portfolio() {
           </motion.div>
         </div>
       </motion.section>
+
+      {/* Research & Publications Section */}
+      <ResearchSection />
 
       {/* Services & Education */}
       <motion.section 
