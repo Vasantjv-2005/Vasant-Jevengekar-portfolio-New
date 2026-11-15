@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import { Send, FileText, Linkedin, Github, Mail } from "lucide-react"
+import { Mail, FileText, ArrowUpRight, Sparkles, MapPin } from "lucide-react"
 
 export function HeroSection() {
   const container = {
@@ -11,61 +11,131 @@ export function HeroSection() {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
+        staggerChildren: 0.12,
+        delayChildren: 0.2,
       },
     },
   }
 
   const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } },
+    hidden: { opacity: 0, y: 16 },
+    show: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.5
+      } 
+    },
   }
 
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-20">
+    <section className="relative pt-12 sm:pt-16 pb-12 px-4 max-w-4xl mx-auto">
       <motion.div
         variants={container}
         initial="hidden"
         animate="show"
-        className="max-w-5xl mx-auto flex flex-col items-center relative z-10"
+        className="flex flex-col gap-8 relative z-10"
       >
-        <motion.div variants={item} className="relative mb-12">
-          <div className="absolute inset-0 rounded-full animated-border" />
-          <Image
-            src="/images/vasant.jpg.jpeg"
-            alt="Vasant Jevengekar"
-            width={180}
-            height={180}
-            className="rounded-full relative z-10 border-4 border-background p-1"
-            priority
-          />
+        {/* Top Header Row: Avatar + Greeting & Role */}
+        <motion.div variants={item} className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-7">
+          {/* Avatar with subtle glow and live status ring */}
+          <div className="relative group shrink-0">
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-primary/30 via-cyan-500/20 to-primary/30 blur-sm opacity-70 group-hover:opacity-100 transition duration-500" />
+            <div className="relative size-24 sm:size-28 md:size-32 rounded-full overflow-hidden border-2 border-background dark:border-card shadow-md">
+              <Image
+                src="/images/vasant.jpg.jpeg"
+                alt="Vasant Jevengekar"
+                fill
+                sizes="(max-width: 640px) 96px, (max-width: 768px) 112px, 128px"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                priority
+              />
+            </div>
+            {/* Live Status indicator */}
+            <div 
+              className="absolute bottom-1 right-1 flex items-center justify-center size-5 rounded-full bg-background border-2 border-background dark:border-card shadow-sm"
+              title="Available for opportunities"
+            >
+              <span className="relative flex size-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full size-2.5 bg-emerald-500"></span>
+              </span>
+            </div>
+          </div>
+
+          {/* Heading & Subtitle */}
+          <div className="space-y-2">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
+              <Sparkles className="size-3" />
+              <span>Available for opportunities</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-foreground">
+              Hi, <span className="gradient-text">Vasant</span> here
+            </h1>
+
+            <p className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground font-medium">
+              <span>Full-Stack Engineer &amp; AI Researcher</span>
+              <span className="text-muted-foreground/40">•</span>
+              <span className="inline-flex items-center gap-1 text-foreground/80">
+                <MapPin className="size-3.5 text-primary" />
+                India
+              </span>
+            </p>
+          </div>
         </motion.div>
 
-        <motion.h1 variants={item} className="text-6xl md:text-8xl font-black mb-6 tracking-tighter">
-          Hi, I&apos;m <span className="gradient-text">Vasant Jevengekar</span>
-        </motion.h1>
+        {/* Bio Paragraph */}
+        <motion.div variants={item} className="space-y-4 max-w-2xl">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+            I build cinematic web experiences, intelligent AI frameworks, and scalable full-stack applications. 
+            I enjoy solving complex engineering problems from first principles, designing intuitive interfaces, 
+            and building fast, reliable software that people actually use.
+          </p>
 
-        <motion.p variants={item} className="text-xl md:text-3xl text-muted-foreground mb-10 max-w-3xl leading-relaxed">
-          I build <span className="text-foreground font-semibold">cinematic</span> and{" "}
-          <span className="text-foreground font-semibold">scalable</span> web experiences using React, Next.js, and modern 3D technologies.
-        </motion.p>
+          {/* "Right now building" Line */}
+          <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground pt-1">
+            <span>Right now building</span>
+            <Link
+              href="#projects"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/25 hover:bg-amber-500/20 hover:scale-105 transition-all shadow-sm group"
+            >
+              <span className="relative flex size-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full size-2 bg-amber-500"></span>
+              </span>
+              <span className="font-semibold text-foreground group-hover:text-amber-500 transition-colors">Life-Flow</span>
+              <span className="text-[11px] text-muted-foreground hidden sm:inline">— AI Decision Simulation</span>
+              <ArrowUpRight className="size-3 text-muted-foreground group-hover:text-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+          </div>
+        </motion.div>
 
-        <motion.div variants={item} className="flex flex-wrap gap-6 justify-center mb-12">
-          <Link href="#contact" className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-background bg-primary rounded-full overflow-hidden transition-transform hover:scale-105 active:scale-95 glow-border">
-            <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
-            <Send className="mr-2 size-5" />
-            <span className="relative">Get in Touch</span>
+        {/* Action Buttons: Get in touch & Resume/CV */}
+        <motion.div variants={item} className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
+          {/* Get in touch */}
+          <Link
+            href="#contact"
+            className="group inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-medium text-sm text-background bg-foreground hover:bg-foreground/90 transition-all hover:scale-105 active:scale-95 shadow-md shadow-foreground/10"
+          >
+            <Mail className="size-4 transition-transform group-hover:-translate-y-0.5" />
+            <span>Get in touch</span>
           </Link>
-          
-          <a href="/Vasant%20Jevengekar%20(2).pdf" target="_blank" rel="noopener noreferrer" className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-foreground bg-secondary/50 backdrop-blur-md border border-white/10 rounded-full overflow-hidden transition-transform hover:scale-105 active:scale-95">
-            <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-primary rounded-full group-hover:w-56 group-hover:h-56 opacity-20"></span>
-            <FileText className="mr-2 size-5" />
-            <span className="relative">View Resume</span>
+
+          {/* Resume / CV */}
+          <a
+            href="/Vasant%20Jevengekar%20(2).pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-medium text-sm text-foreground bg-secondary/80 hover:bg-secondary border border-black/10 dark:border-white/10 transition-all hover:scale-105 active:scale-95 shadow-sm"
+          >
+            <FileText className="size-4 text-primary transition-transform group-hover:scale-110" />
+            <span>Resume / CV</span>
           </a>
         </motion.div>
 
-        <motion.div variants={item} className="flex items-center justify-center gap-7 md:gap-9 text-muted-foreground/80">
+        {/* Social Links Row */}
+        <motion.div variants={item} className="flex items-center gap-5 sm:gap-6 pt-3 text-muted-foreground/80 border-t border-black/5 dark:border-white/5">
           {/* X (Twitter) */}
           <a
             href="https://x.com/VasantJeve78956"
@@ -74,7 +144,7 @@ export function HeroSection() {
             aria-label="X (Twitter)"
             className="hover:text-foreground transition-all duration-200 hover:scale-110"
           >
-            <svg viewBox="0 0 24 24" className="size-5 md:size-6 stroke-[1.6]" fill="none" stroke="currentColor">
+            <svg viewBox="0 0 24 24" className="size-4 sm:size-5 stroke-[1.6]" fill="none" stroke="currentColor">
               <path d="M4 4l16 16m0-16L4 20" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
@@ -87,7 +157,7 @@ export function HeroSection() {
             aria-label="LinkedIn"
             className="hover:text-foreground transition-all duration-200 hover:scale-110"
           >
-            <svg viewBox="0 0 24 24" className="size-5 md:size-6 stroke-[1.6]" fill="none" stroke="currentColor">
+            <svg viewBox="0 0 24 24" className="size-4 sm:size-5 stroke-[1.6]" fill="none" stroke="currentColor">
               <rect x="3" y="3" width="18" height="18" rx="4" />
               <line x1="8" y1="11" x2="8" y2="17" />
               <line x1="8" y1="8" x2="8" y2="8.01" />
@@ -104,7 +174,7 @@ export function HeroSection() {
             aria-label="GitHub"
             className="hover:text-foreground transition-all duration-200 hover:scale-110"
           >
-            <svg viewBox="0 0 24 24" className="size-5 md:size-6 stroke-[1.6]" fill="none" stroke="currentColor">
+            <svg viewBox="0 0 24 24" className="size-4 sm:size-5 stroke-[1.6]" fill="none" stroke="currentColor">
               <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
@@ -117,7 +187,7 @@ export function HeroSection() {
             aria-label="Vasant Jevengekar on Peerlist"
             className="hover:text-foreground transition-all duration-200 hover:scale-110"
           >
-            <svg viewBox="0 0 24 24" className="size-5 md:size-6 stroke-[1.6]" fill="none" stroke="currentColor">
+            <svg viewBox="0 0 24 24" className="size-4 sm:size-5 stroke-[1.6]" fill="none" stroke="currentColor">
               <circle cx="6" cy="12" r="3" />
               <ellipse cx="12" cy="12" rx="2.5" ry="4" />
               <ellipse cx="18" cy="12" rx="1.5" ry="5" />
@@ -130,7 +200,7 @@ export function HeroSection() {
             aria-label="Email"
             className="hover:text-foreground transition-all duration-200 hover:scale-110"
           >
-            <svg viewBox="0 0 24 24" className="size-5 md:size-6 stroke-[1.6]" fill="none" stroke="currentColor">
+            <svg viewBox="0 0 24 24" className="size-4 sm:size-5 stroke-[1.6]" fill="none" stroke="currentColor">
               <rect x="3" y="5" width="18" height="14" rx="2" />
               <path d="M3 7l9 6 9-6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

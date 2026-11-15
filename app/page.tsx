@@ -1,37 +1,21 @@
 "use client"
 
-import { ThemeToggle } from "@/components/theme-toggle"
-import {
-  FileText,
-  Send,
-  Palette,
-  Code2,
-  Database,
-  GraduationCap,
-  Briefcase,
-  Home,
-  User,
-  FolderDot,
-  ExternalLink,
-  BookOpen,
-  ArrowUpRight
-} from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+import { Navbar } from "@/components/navbar"
 import { Clock } from "@/components/clock"
 import { motion } from "framer-motion"
+import Link from "next/link"
+import { Palette, GraduationCap, Send, ArrowUpRight } from "lucide-react"
 import { CursorGlow } from "@/components/ui/cursor-glow"
 import { AnimatedBackground } from "@/components/ui/animated-background"
-import { FloatingDock } from "@/components/ui/floating-dock"
 import { MagicCard } from "@/components/ui/magic-card"
 import { HeroSection } from "@/components/hero-section"
+import { AboutSection } from "@/components/about-section"
 import { ExperienceSection } from "@/components/experience-section"
 import { ProjectCard } from "@/components/project-card"
 import { ResearchSection } from "@/components/research-section"
 import { StackSection } from "@/components/stack-section"
 import { ALL_PROJECTS } from "@/lib/projects-data"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -49,63 +33,17 @@ const staggerContainer = {
 }
 
 export default function Portfolio() {
-  const dockItems = [
-    { icon: <Home className="size-5" />, label: "Home", href: "#" },
-    { icon: <User className="size-5" />, label: "About", href: "#about" },
-    { icon: <Briefcase className="size-5" />, label: "Experience", href: "#experience" },
-    { icon: <FolderDot className="size-5" />, label: "Projects", href: "#projects" },
-    { icon: <BookOpen className="size-5" />, label: "Publications", href: "#publications" },
-    { icon: <Send className="size-5" />, label: "Contact", href: "#contact" },
-  ]
-
   return (
     <div className="min-h-screen relative overflow-hidden selection:bg-primary/30 selection:text-primary">
       <CursorGlow />
       <AnimatedBackground />
       
-      <div className="fixed top-6 right-6 z-50">
-        <ThemeToggle />
-      </div>
-
-      <FloatingDock items={dockItems} />
+      <Navbar />
 
       <HeroSection />
 
-      {/* About Me Section - Cinematic Split */}
-      <motion.section 
-        id="about"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={fadeUpVariant}
-        className="container mx-auto px-4 py-32"
-      >
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8 relative">
-            <div className="absolute -inset-4 bg-primary/10 blur-3xl rounded-full -z-10" />
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight">
-              Designing the <span className="gradient-text">Future</span> of the Web
-            </h2>
-            <div className="space-y-6 text-xl leading-relaxed text-muted-foreground">
-              <p>
-                I&apos;m a web developer and designer with a passion for creating elegant solutions to complex problems.
-                With expertise in React, Next.js, and modern web technologies, I build responsive and accessible web
-                applications that make a difference.
-              </p>
-              <p>
-                As an aspiring full-stack developer, I&apos;ve been actively building my skills through self-driven
-                projects, internships, and continuous learning.
-              </p>
-            </div>
-          </div>
-          <MagicCard className="p-8 glass-card border-black/5 dark:border-white/5 rounded-3xl" glareColor="rgba(6, 182, 212, 0.2)">
-            <h3 className="text-2xl font-bold mb-6 text-foreground">My Journey</h3>
-            <p className="text-muted-foreground leading-relaxed text-lg">
-              Every great developer has an origin story. Mine involves late nights, endless cups of coffee, and an insatiable curiosity for how things work on the web.
-            </p>
-          </MagicCard>
-        </div>
-      </motion.section>
+      {/* About Me Section */}
+      <AboutSection />
 
       {/* Experience Section */}
       <ExperienceSection />
